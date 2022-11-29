@@ -10,6 +10,11 @@ public class CustomerSpawning : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) Instantiate(customer, customerSpawnPoint.position, customerSpawnPoint.rotation, spawnParent);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject newCustomer = Instantiate(customer, customerSpawnPoint.position, customerSpawnPoint.rotation, spawnParent);
+            CustomerManager.WaitingCustomers.Add(newCustomer.transform);
+            Debug.Log("Awaiting customers: " + CustomerManager.WaitingCustomers.Count);
+        }
     }
 }

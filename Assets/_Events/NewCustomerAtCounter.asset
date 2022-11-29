@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 141035372f9f70549bbd2443d1f91384, type: 3}
-  m_Name: SpacePressed
+  m_Name: NewCustomerAtCounter
   m_EditorClassIdentifier: 
