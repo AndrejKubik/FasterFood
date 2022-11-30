@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CustomerMovement : MonoBehaviour
 {
-    private bool counterReached;
+    [HideInInspector] public bool counterReached;
 
     private bool waitingInLine;
     private GameObject customerInFront;
@@ -21,6 +21,7 @@ public class CustomerMovement : MonoBehaviour
         if (other.CompareTag("Counter")) //when the customer reaches the counter
         {
             counterReached = true; //stop moving
+
             EmployeeManager.OrderingCustomer = transform; //cache this customer as the one currently being served
 
             RuntimeEvents.NewCustomerAtCounter.Raise();
@@ -29,8 +30,11 @@ public class CustomerMovement : MonoBehaviour
         {
             if(customerInFront == null) //if the customer hasn't touched another already
             {
-                waitingInLine = true; //start waiting in line for the customer in front 
-                customerInFront = other.gameObject; //cache the touched customer
+                if(other.transform.position.z > transform.position.z) //if the touched customer is in front
+                {
+                    waitingInLine = true; //start waiting in line
+                    customerInFront = other.gameObject; //cache the touched customer
+                }
             }
         }
     }
