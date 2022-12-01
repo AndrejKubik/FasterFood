@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EmployeeManager : MonoBehaviour
 {
-    public static List<Employee> Employees = new List<Employee>();
-
+    public static List<Employee> ActiveEmployees = new List<Employee>();
     [SerializeField] private Transform employeesParent;
+    [SerializeField] private List<GameObject> allEmployees;
 
     public static Transform OrderingCustomer;
 
@@ -14,9 +14,14 @@ public class EmployeeManager : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < employeesParent.childCount; i++)
+        SetExistingEmployeesAsActive(); //set all active worker objects on the scene as active employees so they can serve customers
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Employees.Add(employeesParent.GetChild(i).GetComponent<Employee>());
+            HireAnEmployee();
         }
     }
 
@@ -26,13 +31,13 @@ public class EmployeeManager : MonoBehaviour
         {
             if (OrderingCustomer == null && CustomerManager.WaitingCustomers[0].GetComponent<CustomerMovement>().counterReached) OrderingCustomer = CustomerManager.WaitingCustomers[0];
 
-            for (int i = 0; i < Employees.Count; i++) //check all employees' statuses
+            for (int i = 0; i < ActiveEmployees.Count; i++) //check all employees' statuses
             {
-                if (Employees[i].ServedCustomer == null && !currentCustomerServed) //when the loop caches an employee that is empty-handed
+                if (ActiveEmployees[i].ServedCustomer == null && !currentCustomerServed) //when the loop caches an employee that is empty-handed
                 {
                     currentCustomerServed = true;
 
-                    Employees[i].ServedCustomer = OrderingCustomer; //assign the current customer to the current employee
+                    ActiveEmployees[i].ServedCustomer = OrderingCustomer; //assign the current customer to the current employee
 
                     RuntimeEvents.OrderAccepted.Raise();
                 }
@@ -41,6 +46,22 @@ public class EmployeeManager : MonoBehaviour
             OrderingCustomer = null; //clear out the slot for the next customer
             currentCustomerServed = false; //let the next customer be assigned to an employee
         }
+    }
+
+    private void SetExistingEmployeesAsActive()
+    {
+        for (int i = 0; i < employeesParent.childCount; i++)
+        {
+            Employee employee = employeesParent.GetChild(i).GetComponent<Employee>();
+
+            if(employee.gameObject.activeSelf) ActiveEmployees.Add(employee);
+        }
+    }
+
+    private void HireAnEmployee()
+    {
+        allEmployees[ActiveEmployees.Count].SetActive(true); //show the next worker object on the scene
+        ActiveEmployees.Add(allEmployees[ActiveEmployees.Count].GetComponent<Employee>()); //set the newly shown employee as active so he can receive and prepare orders
     }
 
 }
