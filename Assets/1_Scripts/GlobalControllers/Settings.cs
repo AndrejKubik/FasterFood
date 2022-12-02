@@ -9,9 +9,13 @@ public class Settings : MonoBehaviour
 
     public static CameraControl CameraControl;
 
+    [SerializeField] private ShopSettings shopSettings;
+    public static ShopSettings ShopSettings;
+
     private void Awake()
     {
         CustomerSettings = customerSettings;
         CameraControl = GetComponent<CameraControl>();
+        ShopSettings = shopSettings;
     }
 }

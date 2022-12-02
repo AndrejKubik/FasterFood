@@ -41,6 +41,7 @@ public class Employee : MonoBehaviour
             Debug.Log("OrderFinished");
 
             RuntimeEvents.NewCustomerAtCounter.Raise();
+            RuntimeEvents.OrderFinished.Raise();
         }
     }
 }

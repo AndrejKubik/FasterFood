@@ -17,14 +17,6 @@ public class EmployeeManager : MonoBehaviour
         SetExistingEmployeesAsActive(); //set all active worker objects on the scene as active employees so they can serve customers
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            HireAnEmployee();
-        }
-    }
-
     public void ServeCustomer() //called by: NewCustomerAtCounter
     {
         if(CustomerManager.WaitingCustomers.Count > 0)
@@ -58,7 +50,7 @@ public class EmployeeManager : MonoBehaviour
         }
     }
 
-    private void HireAnEmployee()
+    public void HireAnEmployee() //called by: EmployeeHired
     {
         allEmployees[ActiveEmployees.Count].SetActive(true); //show the next worker object on the scene
 
