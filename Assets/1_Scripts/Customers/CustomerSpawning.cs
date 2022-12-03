@@ -13,8 +13,6 @@ public class CustomerSpawning : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) SpawnACustomer();
-
         if(spawnCooldown <= 0f)
         {
             SpawnACustomer();
@@ -26,7 +24,7 @@ public class CustomerSpawning : MonoBehaviour
         }
     }
 
-    private void SpawnACustomer()
+    public void SpawnACustomer() //called by: CustomerBaited + references
     {
         GameObject newCustomer = Instantiate(customer, customerSpawnPoint.position, customerSpawnPoint.rotation, spawnParent); //spawn a new customer at the shop entrance
 
