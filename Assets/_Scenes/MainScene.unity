@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c46632d79542343916f46e14e715c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customer: {fileID: 3390716940446359824, guid: 68e49ff94ad8cf1409f5c51baba4ec12,
+  customer: {fileID: 3390716940446359824, guid: cdd6240c32846734ab97fdff4f3b43a9,
     type: 3}
   customerSpawnPoint: {fileID: 329727356}
   spawnParent: {fileID: 210863598}
@@ -578,7 +578,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.000000017692507, y: 0.8577145, z: -0.5141263, w: 0.000000029516325}
+  m_LocalRotation: {x: -0.000000017692507, y: 0.8577145, z: -0.5141263, w: -0.000000029516325}
   m_LocalPosition: {x: -0.6, y: 12.426745, z: 0.7625644}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2186,7 +2186,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461896356}
-  m_LocalRotation: {x: 0.000000017692507, y: 0.8577145, z: -0.5141263, w: 0.000000029516325}
+  m_LocalRotation: {x: -0.000000017692507, y: 0.8577145, z: -0.5141263, w: -0.000000029516325}
   m_LocalPosition: {x: -0.6, y: 16.37, z: 2.8700001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

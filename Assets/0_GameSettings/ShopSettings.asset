@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3333b49b1d4971740a36ad3e9777da99, type: 3}
   m_Name: ShopSettings
   m_EditorClassIdentifier: 
-  BaseCustomerPrice: 1
+  BaseCustomerPrice: 0
   BaseEmployeeCost: 10
   BaseMoneyGain: 5
   MoneyUpdateSpeed: 20
