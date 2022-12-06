@@ -8,6 +8,8 @@ public class EmployeeManager : MonoBehaviour
     [SerializeField] private Transform employeesParent;
     [SerializeField] private List<GameObject> allEmployees;
 
+    public static bool MaxEmployees;
+
     public static Transform OrderingCustomer;
 
     private bool currentCustomerServed;
@@ -52,11 +54,20 @@ public class EmployeeManager : MonoBehaviour
 
     public void HireAnEmployee() //called by: EmployeeHired
     {
-        allEmployees[ActiveEmployees.Count].SetActive(true); //show the next worker object on the scene
+        if (ActiveEmployees.Count < allEmployees.Count)
+        {
+            allEmployees[ActiveEmployees.Count].SetActive(true); //show the next worker object on the scene
 
-        Settings.CameraControl.targetGroup.AddMember(allEmployees[ActiveEmployees.Count].transform, 1f, 0f); //add the fresh employee as an additional target for the camera to keep in sight
+            Settings.CameraControl.targetGroup.AddMember(allEmployees[ActiveEmployees.Count].transform, 1f, 0f); //add the fresh employee as an additional target for the camera to keep in sight
 
-        ActiveEmployees.Add(allEmployees[ActiveEmployees.Count].GetComponent<Employee>()); //set the newly shown employee as active so he can receive and prepare orders
+            ActiveEmployees.Add(allEmployees[ActiveEmployees.Count].GetComponent<Employee>()); //set the newly shown employee as active so he can receive and prepare orders
+
+            Debug.Log("Employee hired!");
+        }
+        else
+        {
+            MaxEmployees = true;
+        }
     }
 
 }

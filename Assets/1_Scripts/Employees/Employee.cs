@@ -25,9 +25,9 @@ public class Employee : MonoBehaviour
         if(CustomerManager.WaitingCustomers.Count > 0)
         {
             CustomerManager.WaitingCustomers.RemoveAt(0);
-            Debug.Log("Customers left: " + CustomerManager.WaitingCustomers.Count);
+            //Debug.Log("Customers left: " + CustomerManager.WaitingCustomers.Count);
 
-            Debug.Log(name + " is preparing an order from " + ServedCustomer.name);
+            //Debug.Log(name + " is preparing an order from " + ServedCustomer.name);
 
             customerBeingServed = true;
 
@@ -38,7 +38,7 @@ public class Employee : MonoBehaviour
 
             customerBeingServed = false;
 
-            Debug.Log("OrderFinished");
+            //Debug.Log("OrderFinished");
 
             RuntimeEvents.NewCustomerAtCounter.Raise();
             RuntimeEvents.OrderFinished.Raise();

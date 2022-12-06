@@ -6,4 +6,6 @@ using UnityEngine;
 public class CustomerSettings : ScriptableObject
 {
     [Range(0.15f, 2f)] public float SpawnCooldown = 2f;
+
+    public int MaxCustomersInLine = 6;
 }
