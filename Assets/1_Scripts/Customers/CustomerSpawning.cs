@@ -15,8 +15,11 @@ public class CustomerSpawning : MonoBehaviour
     {
         if(spawnCooldown <= 0f)
         {
-            SpawnACustomer();
-            spawnCooldown = Settings.CustomerSettings.SpawnCooldown;
+            if(CustomerManager.WaitingCustomers.Count < Settings.CustomerSettings.MaxCustomersInLine)
+            {
+                SpawnACustomer();
+                spawnCooldown = Settings.CustomerSettings.SpawnCooldown;
+            }
         }
         else if(spawnCooldown > 0f)
         {
@@ -34,6 +37,6 @@ public class CustomerSpawning : MonoBehaviour
         ////////////
 
         CustomerManager.WaitingCustomers.Add(newCustomer.transform); //add the fresh customer to the list of all customers in line for an order
-        Debug.Log("Awaiting customers: " + CustomerManager.WaitingCustomers.Count);
+        //Debug.Log("Awaiting customers: " + CustomerManager.WaitingCustomers.Count);
     }
 }

@@ -18,20 +18,23 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        //if (currentMoneyUI != targetMoney) UpdateMoneyCount();
         UpdateMoneyCount();
     }
 
     public void BaitCustomer() //called by a button
     {
-        SpendMoney(Settings.ShopSettings.BaseCustomerPrice, RuntimeEvents.CustomerBaited);
-        Debug.Log("Customer baited!");
+        if (CustomerManager.WaitingCustomers.Count < Settings.CustomerSettings.MaxCustomersInLine)
+        {
+            SpendMoney(Settings.ShopSettings.BaseCustomerPrice, RuntimeEvents.CustomerBaited);
+            //Debug.Log("Customer baited!");
+        } 
+        else Debug.Log("Max Customers in line!");
     }
 
     public void HireAnEmployee() //called by a button
     {
-        SpendMoney(Settings.ShopSettings.BaseEmployeeCost, RuntimeEvents.EmployeeHired);
-        Debug.Log("Employee hired!");
+        if(!EmployeeManager.MaxEmployees) SpendMoney(Settings.ShopSettings.BaseEmployeeCost, RuntimeEvents.EmployeeHired);
+        else if(EmployeeManager.MaxEmployees) Debug.Log("Max employees reached!");
     }
 
     private void SpendMoney(float price, GameEvent runtimeEvent)
@@ -53,10 +56,7 @@ public class UIController : MonoBehaviour
 
     private void UpdateMoneyCount()
     {
-        //currentMoneyUI = Mathf.MoveTowards(currentMoneyUI, Money, Time.deltaTime * Settings.ShopSettings.MoneyUpdateSpeed);
-
         currentMoneyUI = Mathf.Round(Mathf.MoveTowards(currentMoneyUI, Money, Time.deltaTime * Settings.ShopSettings.MoneyUpdateSpeed) * 100f) * 0.01f;
-        //targetMoney = Mathf.Round(currentMoneyUI * 100f) * 0.01f;
         moneyCount.text = currentMoneyUI.ToString();
     }
 }
