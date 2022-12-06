@@ -8,7 +8,6 @@ public class UIController : MonoBehaviour
     public static float Money;
 
     [SerializeField] private TextMeshProUGUI moneyCount;
-    private float targetMoney;
     private float currentMoneyUI;
 
     private void Start()
@@ -25,8 +24,8 @@ public class UIController : MonoBehaviour
     {
         if (CustomerManager.WaitingCustomers.Count < Settings.CustomerSettings.MaxCustomersInLine)
         {
-            SpendMoney(Settings.ShopSettings.BaseCustomerPrice, RuntimeEvents.CustomerBaited);
-            //Debug.Log("Customer baited!");
+            if (!CustomerSpawning.EntranceOccupied) SpendMoney(Settings.ShopSettings.BaseCustomerPrice, RuntimeEvents.CustomerBaited);
+            else if (CustomerSpawning.EntranceOccupied) Debug.Log("Wait up!");
         } 
         else Debug.Log("Max Customers in line!");
     }
@@ -44,7 +43,6 @@ public class UIController : MonoBehaviour
             runtimeEvent.Raise();
 
             Money -= price;
-            targetMoney = (float)System.Math.Round(Money, 2);
         }
         else Debug.Log("Not enough money!");
     }
@@ -57,6 +55,6 @@ public class UIController : MonoBehaviour
     private void UpdateMoneyCount()
     {
         currentMoneyUI = Mathf.Round(Mathf.MoveTowards(currentMoneyUI, Money, Time.deltaTime * Settings.ShopSettings.MoneyUpdateSpeed) * 100f) * 0.01f;
-        moneyCount.text = currentMoneyUI.ToString();
+        moneyCount.text = Mathf.RoundToInt(currentMoneyUI).ToString();
     }
 }

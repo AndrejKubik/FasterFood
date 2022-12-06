@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Employee : MonoBehaviour
 {
@@ -10,9 +11,17 @@ public class Employee : MonoBehaviour
     private bool customerBeingServed;
     public Transform CustomerWaitPosition;
 
+    [SerializeField] private GameObject progressBar;
+    [SerializeField] private Image progressBarFill;
+
     private void Update()
     {
-        if (customerBeingServed && ServedCustomer != null) ServedCustomer.position = Vector3.Lerp(ServedCustomer.position, CustomerWaitPosition.position, 15f * Time.deltaTime);
+        if (customerBeingServed && ServedCustomer != null)
+        {
+            ServedCustomer.position = Vector3.Lerp(ServedCustomer.position, CustomerWaitPosition.position, Settings.CustomerSettings.CustomerMovementSpeed * Time.deltaTime);
+
+            progressBarFill.fillAmount = Mathf.MoveTowards(progressBarFill.fillAmount, 1f, Time.deltaTime * 1f / workTime);
+        }
     }
 
     public void PrepareOrder() //called by: OrderAccepted
@@ -29,6 +38,7 @@ public class Employee : MonoBehaviour
 
             //Debug.Log(name + " is preparing an order from " + ServedCustomer.name);
 
+            progressBar.SetActive(true); //show the preparation progress bar above the employee
             customerBeingServed = true;
 
             yield return new WaitForSeconds(delay);
@@ -37,6 +47,9 @@ public class Employee : MonoBehaviour
             ServedCustomer = null;
 
             customerBeingServed = false;
+
+            progressBarFill.fillAmount = 0f; //reset the employee's progress bar
+            progressBar.SetActive(false); //hide the preparation progress bar above the employee
 
             //Debug.Log("OrderFinished");
 

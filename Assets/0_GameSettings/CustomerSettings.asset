@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6877d6bed1a241a45a193f54ed58114d, type: 3}
   m_Name: CustomerSettings
   m_EditorClassIdentifier: 
-  SpawnCooldown: 1
+  SpawnCooldown: 2
+  MaxCustomersInLine: 7
+  CustomerMovementSpeed: 5
+  EntranceFreeDelay: 0.001

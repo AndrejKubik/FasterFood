@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Counter
   - Customer
+  - Entrance
   layers:
   - Default
   - TransparentFX
