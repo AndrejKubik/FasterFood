@@ -15,6 +15,8 @@ public class Employee : MonoBehaviour
 
     private float prepTime;
 
+    private Animator animator;
+
     [Header("MODEL PARENTS: ")]
     [SerializeField] private Transform hats;
     [SerializeField] private Transform heads;
@@ -25,6 +27,8 @@ public class Employee : MonoBehaviour
         CharacterAppearance.ShowRandomModel(hats);
         CharacterAppearance.ShowRandomModel(heads);
         CharacterAppearance.ShowRandomModel(bodies);
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -46,6 +50,8 @@ public class Employee : MonoBehaviour
     {
         if(CustomerManager.WaitingCustomers.Count > 0)
         {
+            animator.SetTrigger("OrderStarted"); //start the order prep animation
+
             CustomerManager.WaitingCustomers.RemoveAt(0);
 
             prepTime = delay;
@@ -64,6 +70,8 @@ public class Employee : MonoBehaviour
 
             RuntimeEvents.NewCustomerAtCounter.Raise();
             RuntimeEvents.OrderFinished.Raise();
+
+            animator.SetTrigger("OrderFinished"); //stop the order prep animation and play the money gain animation
         }
     }
 }

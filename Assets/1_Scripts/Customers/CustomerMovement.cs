@@ -9,6 +9,13 @@ public class CustomerMovement : MonoBehaviour
     private bool waitingInLine;
     private GameObject customerInFront;
 
+    private Animator animator;
+
+    private void OnEnable()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     private void Update()
     {
         if (!counterReached && !waitingInLine) transform.Translate(Vector3.forward * Settings.CustomerSettings.CustomerMovementSpeed * Time.deltaTime); //move the customer toward the counter
@@ -25,6 +32,8 @@ public class CustomerMovement : MonoBehaviour
             EmployeeManager.OrderingCustomer = transform; //cache this customer as the one currently being served
 
             RuntimeEvents.NewCustomerAtCounter.Raise();
+
+            animator.SetBool("Moving", false); //stop the customer movement animation
         }
         else if(other.CompareTag("Customer")) //when a customer touches another customer in line
         {
@@ -34,6 +43,7 @@ public class CustomerMovement : MonoBehaviour
                 {
                     waitingInLine = true; //start waiting in line
                     customerInFront = other.gameObject; //cache the touched customer
+                    animator.SetBool("Moving", false); //stop the customer movement animation
                 }
             }
         }
@@ -44,6 +54,7 @@ public class CustomerMovement : MonoBehaviour
         if(other.CompareTag("Customer"))
         {
             customerInFront = null; //clear out the front customer slot so this one can keep moving
+            if(!counterReached) animator.SetBool("Moving", true); //start looping the skipping animation for the customer
         }
         else if(other.CompareTag("Entrance"))
         {
@@ -51,7 +62,7 @@ public class CustomerMovement : MonoBehaviour
         }
     }
 
-    private void FreeTheEntrance()
+    private void FreeTheEntrance() //called by: OnTriggerExit
     {
         CustomerSpawning.EntranceOccupied = false;
     }
