@@ -6,7 +6,7 @@ public class EmployeeManager : MonoBehaviour
 {
     public static List<Employee> ActiveEmployees = new List<Employee>();
     [SerializeField] private Transform employeesParent;
-    [SerializeField] private List<GameObject> allEmployees;
+    private List<GameObject> allEmployees = new List<GameObject>();
 
     public static bool MaxEmployees;
 
@@ -46,6 +46,7 @@ public class EmployeeManager : MonoBehaviour
     {
         for (int i = 0; i < employeesParent.childCount; i++)
         {
+            allEmployees.Add(employeesParent.GetChild(i).gameObject);
             Employee employee = employeesParent.GetChild(i).GetComponent<Employee>();
 
             if(employee.gameObject.activeSelf) ActiveEmployees.Add(employee);

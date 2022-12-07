@@ -34,6 +34,11 @@ public class GameManager : MonoBehaviour
         CustomerSpawnCooldown = Settings.CustomerSettings.BaseSpawnCooldown;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) MoneyTotal = 1000;
+    }
+
     public void EarnMoney() //called by: OrderFinished
     {
         MoneyTotal += MoneyGain * DishRecipeMultiplier;

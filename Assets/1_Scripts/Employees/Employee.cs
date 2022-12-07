@@ -10,9 +10,22 @@ public class Employee : MonoBehaviour
     private bool customerBeingServed;
     public Transform CustomerWaitPosition;
 
-    [SerializeField] private GameObject progressBar;
+    [Space(10f), SerializeField] private GameObject progressBar;
     [SerializeField] private Image progressBarFill;
+
     private float prepTime;
+
+    [Header("MODEL PARENTS: ")]
+    [SerializeField] private Transform hats;
+    [SerializeField] private Transform heads;
+    [SerializeField] private Transform bodies;
+
+    private void OnEnable()
+    {
+        CharacterAppearance.ShowRandomModel(hats);
+        CharacterAppearance.ShowRandomModel(heads);
+        CharacterAppearance.ShowRandomModel(bodies);
+    }
 
     private void Update()
     {
