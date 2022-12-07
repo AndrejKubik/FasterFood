@@ -17,6 +17,8 @@ public class Employee : MonoBehaviour
 
     private Animator animator;
 
+    public Transform CameraTarget;
+
     [Header("MODEL PARENTS: ")]
     [SerializeField] private Transform hats;
     [SerializeField] private Transform heads;
