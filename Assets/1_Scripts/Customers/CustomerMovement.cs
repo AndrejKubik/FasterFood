@@ -11,7 +11,7 @@ public class CustomerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(!counterReached && !waitingInLine) transform.Translate(Vector3.forward * 10f * Time.deltaTime); //move the customer toward the counter
+        if (!counterReached && !waitingInLine) transform.Translate(Vector3.forward * Settings.CustomerSettings.CustomerMovementSpeed * Time.deltaTime); //move the customer toward the counter
 
         if(customerInFront == null) waitingInLine = false; //if there is no customers in front, stop waiting in line and keep moving
     }
@@ -45,5 +45,14 @@ public class CustomerMovement : MonoBehaviour
         {
             customerInFront = null; //clear out the front customer slot so this one can keep moving
         }
+        else if(other.CompareTag("Entrance"))
+        {
+            Invoke("FreeTheEntrance", Settings.CustomerSettings.EntranceFreeDelay);
+        }
+    }
+
+    private void FreeTheEntrance()
+    {
+        CustomerSpawning.EntranceOccupied = false;
     }
 }
