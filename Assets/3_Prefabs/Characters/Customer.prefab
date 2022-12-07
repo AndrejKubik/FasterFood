@@ -590,7 +590,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2365111475284152380}
-  - component: {fileID: 1488083268705961725}
   m_Layer: 0
   m_Name: ModelsParent
   m_TagString: Untagged
@@ -616,26 +615,6 @@ Transform:
   m_Father: {fileID: 1490642696936093021}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1488083268705961725
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3141613646819576454}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 37ac567f9c416d64d90aab3637427a2c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3390716940446359824
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +630,7 @@ GameObject:
   - component: {fileID: -1716578274600373657}
   - component: {fileID: 5617136383266326199}
   - component: {fileID: 2064842636213555340}
+  - component: {fileID: 4538160837709998622}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Customer
@@ -782,6 +762,26 @@ MonoBehaviour:
   hats: {fileID: 8167006795461851882}
   heads: {fileID: 496509312999839001}
   bodies: {fileID: 949088183419263056}
+--- !u!95 &4538160837709998622
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3390716940446359824}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 70cd34f2b417c4844bece9dd0d244205, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3440930164284898358
 GameObject:
   m_ObjectHideFlags: 0
