@@ -14,5 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseCustomerPrice: 0
   BaseEmployeeCost: 10
+  BaseNewRecipeCost: 15
+  BaseServiceSpeedCost: 5
+  BaseCustomerSpawnSpeedCost: 5
+  NewRecipeSegments: 5
+  ServiceSpeedSegments: 3
+  CustomerSpawnSegments: 4
   BaseMoneyGain: 5
-  MoneyUpdateSpeed: 20
+  MaxDishRecipes: 3
+  NewDishPrepTimeIncrease: 2
+  DishCostIncrease: 3
+  PrepTimeReduceAmmount: 1
+  SpawnCooldownReduceAmmount: 1
+  BaseMoneyUpdateSpeed: 20
+  MoneyUpdateSpeedIncrease: 50
+  ButtonFillSpeed: 3

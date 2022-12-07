@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CustomerSettings", menuName = "GameSettings/Customers")]
 public class CustomerSettings : ScriptableObject
 {
-    [Range(0.15f, 2f)] public float SpawnCooldown = 2f;
+    [Range(0.15f, 5f)] public float BaseSpawnCooldown = 2f;
+    [HideInInspector] public float MinSpawnCooldown = 0.15f;
 
     public int MaxCustomersInLine = 6;
 

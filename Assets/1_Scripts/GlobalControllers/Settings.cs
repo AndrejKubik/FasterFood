@@ -7,6 +7,9 @@ public class Settings : MonoBehaviour
     [SerializeField] private CustomerSettings customerSettings;
     public static CustomerSettings CustomerSettings;
 
+    [SerializeField] private EmployeeSettings employeeSettings;
+    public static EmployeeSettings EmployeeSettings;
+
     public static CameraControl CameraControl;
 
     [SerializeField] private ShopSettings shopSettings;
@@ -15,6 +18,7 @@ public class Settings : MonoBehaviour
     private void Awake()
     {
         CustomerSettings = customerSettings;
+        EmployeeSettings = employeeSettings;
         CameraControl = GetComponent<CameraControl>();
         ShopSettings = shopSettings;
     }

@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6877d6bed1a241a45a193f54ed58114d, type: 3}
-  m_Name: CustomerSettings
+  m_Script: {fileID: 11500000, guid: 141035372f9f70549bbd2443d1f91384, type: 3}
+  m_Name: ServiceSpeedUpgraded
   m_EditorClassIdentifier: 
-  BaseSpawnCooldown: 5
-  MinSpawnCooldown: 0.15
-  MaxCustomersInLine: 7
-  CustomerMovementSpeed: 5
-  EntranceFreeDelay: 0.001

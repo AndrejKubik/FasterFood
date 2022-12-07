@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class Employee : MonoBehaviour
 {
     [HideInInspector] public Transform ServedCustomer;
-    [SerializeField] private float workTime = 2f;
 
     private bool customerBeingServed;
     public Transform CustomerWaitPosition;
 
     [SerializeField] private GameObject progressBar;
     [SerializeField] private Image progressBarFill;
+    private float prepTime;
 
     private void Update()
     {
@@ -20,13 +20,13 @@ public class Employee : MonoBehaviour
         {
             ServedCustomer.position = Vector3.Lerp(ServedCustomer.position, CustomerWaitPosition.position, Settings.CustomerSettings.CustomerMovementSpeed * Time.deltaTime);
 
-            progressBarFill.fillAmount = Mathf.MoveTowards(progressBarFill.fillAmount, 1f, Time.deltaTime * 1f / workTime);
+            progressBarFill.fillAmount = Mathf.MoveTowards(progressBarFill.fillAmount, 1f, Time.deltaTime * 1f / prepTime); //fill the progress to the end gradually to full while the order finishes
         }
     }
 
     public void PrepareOrder() //called by: OrderAccepted
     {
-        if(!customerBeingServed && ServedCustomer != null) StartCoroutine(OrderPrep(workTime)); //start preparing the order for the assigned customer
+        if(!customerBeingServed && ServedCustomer != null) StartCoroutine(OrderPrep(GameManager.OrderPrepTime)); //start preparing the order for the assigned customer
     }
 
     IEnumerator OrderPrep(float delay)
@@ -34,9 +34,8 @@ public class Employee : MonoBehaviour
         if(CustomerManager.WaitingCustomers.Count > 0)
         {
             CustomerManager.WaitingCustomers.RemoveAt(0);
-            //Debug.Log("Customers left: " + CustomerManager.WaitingCustomers.Count);
 
-            //Debug.Log(name + " is preparing an order from " + ServedCustomer.name);
+            prepTime = delay;
 
             progressBar.SetActive(true); //show the preparation progress bar above the employee
             customerBeingServed = true;
@@ -47,11 +46,8 @@ public class Employee : MonoBehaviour
             ServedCustomer = null;
 
             customerBeingServed = false;
-
             progressBarFill.fillAmount = 0f; //reset the employee's progress bar
             progressBar.SetActive(false); //hide the preparation progress bar above the employee
-
-            //Debug.Log("OrderFinished");
 
             RuntimeEvents.NewCustomerAtCounter.Raise();
             RuntimeEvents.OrderFinished.Raise();

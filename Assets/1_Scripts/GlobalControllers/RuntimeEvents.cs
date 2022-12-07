@@ -19,6 +19,15 @@ public class RuntimeEvents : MonoBehaviour
     [SerializeField] private GameEvent orderFinished;
     public static GameEvent OrderFinished;
 
+    [SerializeField] private GameEvent dishRecipeUpgraded;
+    public static GameEvent DishRecipeUpgraded;
+
+    [SerializeField] private GameEvent serviceSpeedUpgraded;
+    public static GameEvent ServiceSpeedUpgraded;
+
+    [SerializeField] private GameEvent customerSpawnSpeedUpgraded;
+    public static GameEvent CustomerSpawnSpeedUpgraded;
+
     private void Awake()
     {
         OrderAccepted = orderAccepted;
@@ -26,5 +35,8 @@ public class RuntimeEvents : MonoBehaviour
         CustomerBaited = customerBaited;
         EmployeeHired = employeeHired;
         OrderFinished = orderFinished;
+        DishRecipeUpgraded = dishRecipeUpgraded;
+        ServiceSpeedUpgraded = serviceSpeedUpgraded;
+        CustomerSpawnSpeedUpgraded = customerSpawnSpeedUpgraded;
     }
 }

@@ -7,7 +7,7 @@ public class CustomerSpawning : MonoBehaviour
     [SerializeField] private GameObject customer;
     [SerializeField] private Transform customerSpawnPoint;
     [SerializeField] private Transform spawnParent;
-    private float spawnCooldown = 3f;
+    private float spawnCooldown = 1f;
 
     private int namingIndex = 0; //debug only
 
@@ -20,7 +20,7 @@ public class CustomerSpawning : MonoBehaviour
             if(CustomerManager.WaitingCustomers.Count < Settings.CustomerSettings.MaxCustomersInLine && !EntranceOccupied)
             {
                 SpawnACustomer();
-                spawnCooldown = Settings.CustomerSettings.SpawnCooldown;
+                spawnCooldown = GameManager.CustomerSpawnCooldown;
             }
         }
         else if(spawnCooldown > 0f)
