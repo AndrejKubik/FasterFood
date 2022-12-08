@@ -10,6 +10,10 @@ public class UIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moneyCount;
     [Space(10f), SerializeField] private Animator currentMoneyAnimator;
 
+    [Header("DEBUG MENU OBJECTS: ")]
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject pauseButton;
+
     [Header("UPGRADE PROGRESS BARS: ")]
     [SerializeField] private Image customersUpgradeFill;
     [SerializeField] private Image dishUpgradeFill;
@@ -49,9 +53,18 @@ public class UIController : MonoBehaviour
         UpdateButtonFills();
     }
 
-    public void PauseGame()
+    public void PauseGame() //called by menu button
     {
+        pauseMenu.SetActive(true);
+        pauseButton.SetActive(false);
+        Time.timeScale = 0f;
+    }
 
+    public void ResumeGame() //called by menu button
+    {
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+        pauseButton.SetActive(true);
     }
 
     public void BaitCustomer() //called by a button

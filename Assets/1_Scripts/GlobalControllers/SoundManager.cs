@@ -34,4 +34,10 @@ public class SoundManager : MonoBehaviour
     {
         gameAudio.PlayOneShot(sound, volume);
     }
+
+    public void ToggleAudio()
+    {
+        if(gameAudio.volume > 0) gameAudio.volume = 0f;
+        else if (gameAudio.volume <= 0) gameAudio.volume = 0.2f;
+    }
 }
