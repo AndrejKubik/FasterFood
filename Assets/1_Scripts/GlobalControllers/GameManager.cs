@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public static float CurrentServiceSpeedPrice;
     public static float CurrentCustomerSpawnPrice;
 
+
+
     private void Start()
     {
         MoneyGain = Settings.ShopSettings.BaseMoneyGain;
@@ -46,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) MoneyTotal = 1000;
+        if (Input.GetKeyDown(KeyCode.Tab)) MoneyTotal += 1000;
     }
 
     public void EarnMoney() //called by: OrderFinished
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateEmployeePrice() //called by: EmployeeHired
     {
-        CurrentEmployeePrice *= Settings.ShopSettings.EmployeePriceMultiplier;
+        IncreasePrice(ref CurrentEmployeePrice, Settings.ShopSettings.EmployeePriceMultiplier);
     }
 
     public void UpgradePrepTime() //called by: ServiceSpeedUpgraded
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
 
     private void IncreasePrice(ref float price, float priceIncrease)
     {
-        price *= priceIncrease;
+        float rawPrice = price * priceIncrease;
+        price = Mathf.RoundToInt(rawPrice);
     }
 }

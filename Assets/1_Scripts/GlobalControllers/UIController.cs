@@ -20,6 +20,32 @@ public class UIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI serviceSpeedCost;
     [SerializeField] private TextMeshProUGUI customerSpawnCost;
 
+    [Header("UPGRADE BUTTON ANIMATORS: ")]
+    [SerializeField] private Animator employeeButtonAnimator;
+    [SerializeField] private Animator newRecipeButtonAnimator;
+    [SerializeField] private Animator serviceSpeedButtonAnimator;
+    [SerializeField] private Animator customerSpawnButtonAnimator;
+
+    [Header("UPGRADE BUTTON BLOCKERS: ")]
+    [SerializeField] private GameObject employeeButtonBlock;
+    [SerializeField] private GameObject newRecipeButtonBlock;
+    [SerializeField] private GameObject serviceSpeedButtonBlock;
+    [SerializeField] private GameObject customerSpawnButtonBlock;
+
+    public static GameObject EmployeeButtonBlock;
+    public static GameObject NewRecipeButtonBlock;
+    public static GameObject ServiceSpeedButtonBlock;
+    public static GameObject CustomerSpawnButtonBlock;
+
+    [Space(10f), SerializeField] private Animator currentMoneyAnimator;
+
+    private void Awake()
+    {
+        EmployeeButtonBlock = employeeButtonBlock;
+        NewRecipeButtonBlock = newRecipeButtonBlock;
+        ServiceSpeedButtonBlock = serviceSpeedButtonBlock;
+        CustomerSpawnButtonBlock = customerSpawnButtonBlock;
+    }
 
     private void Start()
     {
@@ -50,8 +76,8 @@ public class UIController : MonoBehaviour
         {
             SpendMoney(GameManager.CurrentEmployeePrice, RuntimeEvents.EmployeeHired); //if the another level is available for this upgrade, buy it
             UpdateCostText(employeeCost, GameManager.CurrentEmployeePrice);
+            PlayButtonAnimation(employeeButtonAnimator);
         }
-        else if(EmployeeManager.MaxEmployees) Debug.Log("Max employees reached!"); //otherwise do nothing
     }
 
     public void UpgradeDishRecipe() //called by a button
@@ -60,8 +86,9 @@ public class UIController : MonoBehaviour
         {
             SpendMoney(GameManager.CurrentRecipePrice, RuntimeEvents.DishRecipeUpgraded); //if the another level is available for this upgrade, buy it
             UpdateCostText(newRecipeCost, GameManager.CurrentRecipePrice);
+            PlayButtonAnimation(newRecipeButtonAnimator);
+            serviceSpeedButtonBlock.SetActive(false);
         }
-        else if(GameManager.CurrentDishRecipe >= Settings.ShopSettings.MaxDishRecipes) Debug.Log("Max recipes reached!"); //otherwise do nothing
     }
 
     public void UpgradeServiceSpeed() //called by a button
@@ -70,8 +97,8 @@ public class UIController : MonoBehaviour
         {
             SpendMoney(GameManager.CurrentServiceSpeedPrice, RuntimeEvents.ServiceSpeedUpgraded); //if the another level is available for this upgrade, buy it
             UpdateCostText(serviceSpeedCost, GameManager.CurrentServiceSpeedPrice);
+            PlayButtonAnimation(serviceSpeedButtonAnimator);
         }
-        else if (GameManager.OrderPrepTime <= Settings.EmployeeSettings.MinOrderPrepTime) Debug.Log("Maximum prep speed achieved!"); //otherwise do nothing
     }
 
     public void UpgradeCustomerSpawnSpeed() //called by a button
@@ -80,8 +107,13 @@ public class UIController : MonoBehaviour
         {
             SpendMoney(GameManager.CurrentCustomerSpawnPrice, RuntimeEvents.CustomerSpawnSpeedUpgraded); //if the another level is available for this upgrade, buy it
             UpdateCostText(customerSpawnCost, GameManager.CurrentCustomerSpawnPrice);
+            PlayButtonAnimation(customerSpawnButtonAnimator);
         }
-        else if (GameManager.CustomerSpawnCooldown <= Settings.CustomerSettings.MinSpawnCooldown) Debug.Log("Minimum spawn cooldown reached!"); //otherwise do nothing
+    }
+
+    public void AnimateMoneyImage() //called by: OrderFinished
+    {
+        currentMoneyAnimator.Play("MoneyEarned", 0, 0f);
     }
 
     private void SpendMoney(float price, GameEvent runtimeEvent)
@@ -112,6 +144,11 @@ public class UIController : MonoBehaviour
     private void UpdateCostText(TextMeshProUGUI price, float newPrice)
     {
         price.text = newPrice.ToString();
+    }
+
+    private void PlayButtonAnimation(Animator animator)
+    {
+        animator.Play("ButtonPress");
     }
 
     private void UpdateButtonFills()
