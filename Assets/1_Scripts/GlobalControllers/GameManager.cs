@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab)) MoneyTotal += 1000000000000;
+        if (Input.GetKeyDown(KeyCode.Tab)) MoneyTotal += 50;
     }
 
     public void EarnMoney() //called by: OrderFinished

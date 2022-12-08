@@ -1202,7 +1202,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.000000009152091, y: 0.8468066, z: -0.53190094, w: 0.00000001457048}
+  m_LocalRotation: {x: -0.000000009152091, y: 0.8468066, z: -0.53190094, w: -0.00000001457048}
   m_LocalPosition: {x: -0.6, y: 14.13745, z: 3.807223}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3865,7 +3865,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461896356}
-  m_LocalRotation: {x: 0.000000009152091, y: 0.8468066, z: -0.53190094, w: 0.00000001457048}
+  m_LocalRotation: {x: -0.000000009152091, y: 0.8468066, z: -0.53190094, w: -0.00000001457048}
   m_LocalPosition: {x: -0.6, y: 13.5, z: 3.5000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4496,7 +4496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGroup: {fileID: 150178582}
-  camera2: {fileID: 0}
+  camera2: {fileID: 55422212}
 --- !u!1001 &1917485170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5063,5 +5063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 7327933876444312866, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1908785726}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee3d774fa5d98304887d3b0e9ba62371, type: 3}
