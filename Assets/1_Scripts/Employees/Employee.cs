@@ -11,7 +11,9 @@ public class Employee : MonoBehaviour
     public Transform CustomerWaitPosition;
 
     [Space(10f), SerializeField] private GameObject progressBar;
+    [SerializeField] private List<Sprite> progressBarSprites;
     [SerializeField] private Image progressBarFill;
+    [SerializeField] private Image progressBarBackground;
 
     private float prepTime;
 
@@ -58,7 +60,10 @@ public class Employee : MonoBehaviour
 
             prepTime = delay;
 
+            progressBarFill.sprite = progressBarSprites[GameManager.CurrentDishRecipe];
+            progressBarBackground.sprite = progressBarSprites[GameManager.CurrentDishRecipe];
             progressBar.SetActive(true); //show the preparation progress bar above the employee
+
             customerBeingServed = true;
 
             yield return new WaitForSeconds(delay);
@@ -73,6 +78,7 @@ public class Employee : MonoBehaviour
             ServedCustomer = null;
 
             customerBeingServed = false;
+
             progressBarFill.fillAmount = 0f; //reset the employee's progress bar
             progressBar.SetActive(false); //hide the preparation progress bar above the employee
 

@@ -12,9 +12,7 @@ public class ParticleManager : MonoBehaviour
 
     public void SpawnCustomerDisappearParticle() //called by: OrderFinished
     {
-        Instantiate(customerDisappearParticle, DisappearParticlePosition, transform.rotation); //spawn the the chosen particle at the chosen location
-
-        DisappearParticlePosition = Vector3.zero; //reset the spawn position 
+        SpawnParticle(customerDisappearParticle, ref DisappearParticlePosition);
     }
 
     public void SpawnCashEarnedParticle() //called by: OrderFinished

@@ -1122,7 +1122,12 @@ MonoBehaviour:
   ServedCustomer: {fileID: 0}
   CustomerWaitPosition: {fileID: 1400391999468998053}
   progressBar: {fileID: 7969080258535216027}
+  progressBarSprites:
+  - {fileID: 21300000, guid: 1ac27b279abd1ad4db993fba3c8b26e2, type: 3}
+  - {fileID: 21300000, guid: cdfe4bc5437c981488d8398064ee9791, type: 3}
+  - {fileID: 21300000, guid: e0110700b8387994fafe42035d149d0c, type: 3}
   progressBarFill: {fileID: 7808182133147478723}
+  progressBarBackground: {fileID: 3231458597470925150}
   CameraTarget: {fileID: 6711520471156664555}
   hats: {fileID: 8528908377372982121}
   heads: {fileID: 5929417567403080855}
@@ -1524,7 +1529,7 @@ RectTransform:
   m_GameObject: {fileID: 8434140599980929308}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
   m_LocalPosition: {x: 0, y: 0, z: 0.938}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6968196297200764036}
