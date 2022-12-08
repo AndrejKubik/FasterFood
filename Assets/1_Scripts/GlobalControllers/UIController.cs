@@ -49,6 +49,11 @@ public class UIController : MonoBehaviour
         UpdateButtonFills();
     }
 
+    public void PauseGame()
+    {
+
+    }
+
     public void BaitCustomer() //called by a button
     {
         if (CustomerManager.WaitingCustomers.Count < Settings.CustomerSettings.MaxCustomersInLine)

@@ -9,7 +9,7 @@ public class CameraControl : MonoBehaviour
 
     [SerializeField] private CinemachineVirtualCamera camera2;
 
-    public void SwitchCamera()
+    public void SwitchCamera() //called by a button in pause menu
     {
         if(camera2.Priority == 0) camera2.Priority = 1;
         else if(camera2.Priority == 1) camera2.Priority = 0;
