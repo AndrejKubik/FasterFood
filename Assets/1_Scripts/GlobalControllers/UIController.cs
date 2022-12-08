@@ -53,7 +53,11 @@ public class UIController : MonoBehaviour
     {
         if (CustomerManager.WaitingCustomers.Count < Settings.CustomerSettings.MaxCustomersInLine)
         {
-            if (!CustomerSpawning.EntranceOccupied) SpendMoney(Settings.ShopSettings.BaseCustomerPrice, RuntimeEvents.CustomerBaited);
+            if (!CustomerSpawning.EntranceOccupied)
+            {
+                SpendMoney(Settings.ShopSettings.BaseCustomerPrice, RuntimeEvents.CustomerBaited);
+                RuntimeEvents.UpgradeBought.Raise(); //play the button sound
+            }
             else if (CustomerSpawning.EntranceOccupied) Debug.Log("Wait up!");
         } 
         else Debug.Log("Max Customers in line!");
@@ -82,12 +86,9 @@ public class UIController : MonoBehaviour
 
     public void UpgradeCustomerSpawnSpeed() //called by a button
     {
-        if (GameManager.CustomerSpawnCooldown > Settings.CustomerSettings.MinSpawnCooldown)
-        {
-            SpendMoney(GameManager.CurrentCustomerSpawnPrice, RuntimeEvents.CustomerSpawnSpeedUpgraded); //if the another level is available for this upgrade, buy it
-            UpdateCostText(customerSpawnCost, GameManager.CurrentCustomerSpawnPrice);
-            PlayButtonAnimation(customerSpawnButtonAnimator);
-        }
+        SpendMoney(GameManager.CurrentCustomerSpawnPrice, RuntimeEvents.CustomerSpawnSpeedUpgraded); //if the another level is available for this upgrade, buy it
+        UpdateCostText(customerSpawnCost, GameManager.CurrentCustomerSpawnPrice);
+        PlayButtonAnimation(customerSpawnButtonAnimator);
     }
 
     public void AnimateMoneyImage() //called by: OrderFinished
@@ -161,7 +162,8 @@ public class UIController : MonoBehaviour
 
     private void PlayButtonAnimation(Animator animator)
     {
-        animator.Play("ButtonPress");
+        animator.Play("ButtonPress"); //blob the button
+        RuntimeEvents.UpgradeBought.Raise(); //play the button sound
     }
 
     private void UpdateButtonFills()

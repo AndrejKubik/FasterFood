@@ -44,6 +44,13 @@ public class RuntimeEvents : MonoBehaviour
     [SerializeField] private GameEvent maxServiceSpeedReached;
     public static GameEvent MaxServiceSpeedReached;
 
+    [Header("MAX UPGRADE EVENTS: ")]
+    [SerializeField] private GameEvent notEnoughMoney;
+    public static GameEvent NotEnoughMoney;
+
+    [SerializeField] private GameEvent upgradeBought;
+    public static GameEvent UpgradeBought;
+
     private void Awake()
     {
         OrderAccepted = orderAccepted;
@@ -60,5 +67,8 @@ public class RuntimeEvents : MonoBehaviour
         MaxRecipeReached = maxRecipeReached;
         MaxServiceSpeedReached = maxServiceSpeedReached;
         RecipeChanged = recipeChanged;
+
+        NotEnoughMoney = notEnoughMoney;
+        UpgradeBought = upgradeBought;
     }
 }
