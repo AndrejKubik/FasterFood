@@ -164,6 +164,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 354066084}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &89653152 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8067553286120005873, guid: ee3d774fa5d98304887d3b0e9ba62371,
+    type: 3}
+  m_PrefabInstance: {fileID: 6720103587157376197}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &100788912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,6 +1981,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 540238876}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &740303663 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6263179928938150166, guid: ee3d774fa5d98304887d3b0e9ba62371,
+    type: 3}
+  m_PrefabInstance: {fileID: 6720103587157376197}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &823203715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2845,6 +2869,7 @@ GameObject:
   - component: {fileID: 1276795480}
   - component: {fileID: 1276795482}
   - component: {fileID: 1276795481}
+  - component: {fileID: 1276795483}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2982,6 +3007,34 @@ MonoBehaviour:
       - m_Target: {fileID: 1276795479}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: UpgradeDishRecipe
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1276795483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276795476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d8d8eac627d04438196a20b37a498e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b6bfa52ccd6c13046b7728857cacd984, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1276795479}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: UpdateEmployeePrice
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3428,6 +3481,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 550529048}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1520167571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2007831329223081139, guid: ee3d774fa5d98304887d3b0e9ba62371,
+    type: 3}
+  m_PrefabInstance: {fileID: 6720103587157376197}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1544562257
 GameObject:
   m_ObjectHideFlags: 0
@@ -4175,6 +4240,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c985a65a323ef634cb46bde2d702bd33, type: 3}
+--- !u!114 &1938565208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2469066701298140087, guid: ee3d774fa5d98304887d3b0e9ba62371,
+    type: 3}
+  m_PrefabInstance: {fileID: 6720103587157376197}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1995867213
 GameObject:
   m_ObjectHideFlags: 0
@@ -4436,9 +4513,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6720103587940718732, guid: ee3d774fa5d98304887d3b0e9ba62371,
         type: 3}
+      propertyPath: employeeCost
+      value: 
+      objectReference: {fileID: 89653152}
+    - target: {fileID: 6720103587940718732, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: newRecipeCost
+      value: 
+      objectReference: {fileID: 1938565208}
+    - target: {fileID: 6720103587940718732, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
       propertyPath: dishUpgradeFill
       value: 
       objectReference: {fileID: 6720103587157376199}
+    - target: {fileID: 6720103587940718732, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: serviceSpeedCost
+      value: 
+      objectReference: {fileID: 1520167571}
+    - target: {fileID: 6720103587940718732, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: customerSpawnCost
+      value: 
+      objectReference: {fileID: 740303663}
     - target: {fileID: 6720103587940718732, guid: ee3d774fa5d98304887d3b0e9ba62371,
         type: 3}
       propertyPath: customersUpgradeFill

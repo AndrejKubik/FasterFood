@@ -63,8 +63,6 @@ public class EmployeeManager : MonoBehaviour
 
             ActiveEmployees.Add(allEmployees[ActiveEmployees.Count].GetComponent<Employee>()); //set the newly shown employee as active so he can receive and prepare orders
 
-            Debug.Log("Employee hired!");
-
             ServeCustomer(); //if there is customers lined-up, serve the next one right away
         }
         else

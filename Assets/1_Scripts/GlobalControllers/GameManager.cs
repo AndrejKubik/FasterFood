@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
     public static int CurrentServiceSpeedSegments;
     public static int CurrentCustomerSpawnSegments;
 
+    public static float CurrentEmployeePrice;
+    public static float CurrentRecipePrice;
+    public static float CurrentServiceSpeedPrice;
+    public static float CurrentCustomerSpawnPrice;
+
     private void Start()
     {
         MoneyGain = Settings.ShopSettings.BaseMoneyGain;
@@ -32,6 +37,11 @@ public class GameManager : MonoBehaviour
         OrderPrepTimeReduceAmmount = Settings.ShopSettings.PrepTimeReduceAmmount;
 
         CustomerSpawnCooldown = Settings.CustomerSettings.BaseSpawnCooldown;
+
+        CurrentEmployeePrice = Settings.ShopSettings.BaseEmployeeCost;
+        CurrentRecipePrice = Settings.ShopSettings.BaseNewRecipeCost;
+        CurrentServiceSpeedPrice = Settings.ShopSettings.BaseServiceSpeedCost;
+        CurrentCustomerSpawnPrice = Settings.ShopSettings.BaseCustomerSpawnSpeedCost;
     }
 
     private void Update()
@@ -44,19 +54,27 @@ public class GameManager : MonoBehaviour
         MoneyTotal += MoneyGain * DishRecipeMultiplier;
     }
 
+    public void UpdateEmployeePrice() //called by: EmployeeHired
+    {
+        CurrentEmployeePrice *= Settings.ShopSettings.EmployeePriceMultiplier;
+    }
+
     public void UpgradePrepTime() //called by: ServiceSpeedUpgraded
     {
         BuyUpgrade("ReduceOrderPrepTime", ref CurrentServiceSpeedSegments, Settings.ShopSettings.ServiceSpeedSegments);
+        IncreasePrice(ref CurrentServiceSpeedPrice, Settings.ShopSettings.ServiceSpeedPriceMultiplier);
     }
 
     public void UpgradeCustomerSpawnSpeed() //called by: CustomerSpawnSpeedUpgraded
     {
         BuyUpgrade("ReduceCustomerSpawnCooldown", ref CurrentCustomerSpawnSegments, Settings.ShopSettings.CustomerSpawnSegments);
+        IncreasePrice(ref CurrentCustomerSpawnPrice, Settings.ShopSettings.CustomerSpawnPriceMultiplier);
     }
 
     public void UpgradeDishRecipe() //called by: DishRecipeUpgraded
     {
         BuyUpgrade("ChangeDishRecipe", ref CurrentRecipeSegments, Settings.ShopSettings.NewRecipeSegments);
+        IncreasePrice(ref CurrentRecipePrice, Settings.ShopSettings.RecipePriceMultiplier);
     }
 
     private void ReduceOrderPrepTime() //called by: UpgradePrepTime()
@@ -96,5 +114,10 @@ public class GameManager : MonoBehaviour
             Invoke(method, 0f);
             boughtSegments = 0;
         }
+    }
+
+    private void IncreasePrice(ref float price, float priceIncrease)
+    {
+        price *= priceIncrease;
     }
 }

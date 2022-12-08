@@ -12,6 +12,13 @@ public class ShopSettings : ScriptableObject
     public float BaseServiceSpeedCost = 5f;
     public float BaseCustomerSpawnSpeedCost = 5f;
 
+    [Header("PRICE INCREASE MULTIPLIERS: ")]
+    public float CustomerPriceMultiplier = 0f;
+    public float EmployeePriceMultiplier = 2f;
+    public float RecipePriceMultiplier = 3f;
+    public float ServiceSpeedPriceMultiplier = 1.2f;
+    public float CustomerSpawnPriceMultiplier = 1.5f;
+
     [Space(10f), Header("UPGRADE SEGMENT COUNTS: ")]
     public int NewRecipeSegments = 5;
     public int ServiceSpeedSegments = 3;
