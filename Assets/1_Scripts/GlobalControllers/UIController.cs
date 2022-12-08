@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
 {
     private float currentMoneyUI;
     [SerializeField] private TextMeshProUGUI moneyCount;
+    [Space(10f), SerializeField] private Animator currentMoneyAnimator;
 
     [Header("UPGRADE PROGRESS BARS: ")]
     [SerializeField] private Image customersUpgradeFill;
@@ -32,20 +33,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject serviceSpeedButtonBlock;
     [SerializeField] private GameObject customerSpawnButtonBlock;
 
-    public static GameObject EmployeeButtonBlock;
-    public static GameObject NewRecipeButtonBlock;
-    public static GameObject ServiceSpeedButtonBlock;
-    public static GameObject CustomerSpawnButtonBlock;
-
-    [Space(10f), SerializeField] private Animator currentMoneyAnimator;
-
-    private void Awake()
-    {
-        EmployeeButtonBlock = employeeButtonBlock;
-        NewRecipeButtonBlock = newRecipeButtonBlock;
-        ServiceSpeedButtonBlock = serviceSpeedButtonBlock;
-        CustomerSpawnButtonBlock = customerSpawnButtonBlock;
-    }
+    [Header("RECIPE UPGRADE SPRITES: ")]
+    [SerializeField] private List<GameObject> recipeSprites;
 
     private void Start()
     {
@@ -72,33 +61,23 @@ public class UIController : MonoBehaviour
 
     public void HireAnEmployee() //called by a button
     {
-        if(!EmployeeManager.MaxEmployees)
-        {
-            SpendMoney(GameManager.CurrentEmployeePrice, RuntimeEvents.EmployeeHired); //if the another level is available for this upgrade, buy it
-            UpdateCostText(employeeCost, GameManager.CurrentEmployeePrice);
-            PlayButtonAnimation(employeeButtonAnimator);
-        }
+        SpendMoney(GameManager.CurrentEmployeePrice, RuntimeEvents.EmployeeHired); //if the another level is available for this upgrade, buy it
+        UpdateCostText(employeeCost, GameManager.CurrentEmployeePrice);
+        PlayButtonAnimation(employeeButtonAnimator);
     }
 
     public void UpgradeDishRecipe() //called by a button
     {
-        if (GameManager.CurrentDishRecipe < Settings.ShopSettings.MaxDishRecipes)
-        {
-            SpendMoney(GameManager.CurrentRecipePrice, RuntimeEvents.DishRecipeUpgraded); //if the another level is available for this upgrade, buy it
-            UpdateCostText(newRecipeCost, GameManager.CurrentRecipePrice);
-            PlayButtonAnimation(newRecipeButtonAnimator);
-            serviceSpeedButtonBlock.SetActive(false);
-        }
+        SpendMoney(GameManager.CurrentRecipePrice, RuntimeEvents.DishRecipeUpgraded); //if the another level is available for this upgrade, buy it
+        UpdateCostText(newRecipeCost, GameManager.CurrentRecipePrice);
+        PlayButtonAnimation(newRecipeButtonAnimator);
     }
 
     public void UpgradeServiceSpeed() //called by a button
     {
-        if (GameManager.OrderPrepTime > Settings.EmployeeSettings.MinOrderPrepTime)
-        {
-            SpendMoney(GameManager.CurrentServiceSpeedPrice, RuntimeEvents.ServiceSpeedUpgraded); //if the another level is available for this upgrade, buy it
-            UpdateCostText(serviceSpeedCost, GameManager.CurrentServiceSpeedPrice);
-            PlayButtonAnimation(serviceSpeedButtonAnimator);
-        }
+        SpendMoney(GameManager.CurrentServiceSpeedPrice, RuntimeEvents.ServiceSpeedUpgraded); //if the another level is available for this upgrade, buy it
+        UpdateCostText(serviceSpeedCost, GameManager.CurrentServiceSpeedPrice);
+        PlayButtonAnimation(serviceSpeedButtonAnimator);
     }
 
     public void UpgradeCustomerSpawnSpeed() //called by a button
@@ -114,6 +93,40 @@ public class UIController : MonoBehaviour
     public void AnimateMoneyImage() //called by: OrderFinished
     {
         currentMoneyAnimator.Play("MoneyEarned", 0, 0f);
+    }
+
+    public void BlockServiceSpeedUpgrade() //called by: MaxServiceSpeedReached
+    {
+        serviceSpeedButtonBlock.SetActive(true); //cover the service speed upgrade button
+    }
+
+    public void UnblockServiceSpeedUpgrade() //called by: RecipeChanged
+    {
+        serviceSpeedButtonBlock.SetActive(false); //uncover the service speed upgrade button
+    }
+
+    public void ChangeRecipeSprite() //called by: RecipeChanged
+    {
+        for(int i = 0; i < recipeSprites.Count; i++)
+        {
+            if (i == GameManager.CurrentDishRecipe) recipeSprites[i].SetActive(true);
+            else if(i != GameManager.CurrentDishRecipe) recipeSprites[i].SetActive(false);
+        }
+    }
+
+    public void BlockRecipeUpgrade() //called by: MaxRecipeReached
+    {
+        newRecipeButtonBlock.SetActive(true);
+    }
+
+    public void BlockCustomerSpawnUpgrade() //called by: MaxCustomerSpawnReached
+    {
+        customerSpawnButtonBlock.SetActive(true);
+    }
+
+    public void BlockEmployeeHire() //called by: MaxEmployeesReached
+    {
+        employeeButtonBlock.SetActive(true); //cover the employee button since there are no more slots
     }
 
     private void SpendMoney(float price, GameEvent runtimeEvent)

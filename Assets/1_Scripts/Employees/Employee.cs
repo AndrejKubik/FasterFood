@@ -63,7 +63,13 @@ public class Employee : MonoBehaviour
 
             yield return new WaitForSeconds(delay);
 
-            if (ServedCustomer != null) Destroy(ServedCustomer.gameObject); //remove the completely served customer from the game
+            if (ServedCustomer != null)
+            {
+                ParticleManager.DisappearParticlePosition = ServedCustomer.position; //let the particle manager know where to spawn a poof particle
+                ParticleManager.CashEarnedParticlePosition = transform.position + new Vector3(0f, 3.2f, 0f); //let the particle manager know where to spawn a money particle
+                Destroy(ServedCustomer.gameObject); //remove the completely served customer from the game
+            }
+
             ServedCustomer = null;
 
             customerBeingServed = false;

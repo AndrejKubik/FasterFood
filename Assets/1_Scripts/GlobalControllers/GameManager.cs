@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public static float CurrentServiceSpeedPrice;
     public static float CurrentCustomerSpawnPrice;
 
-
+    [SerializeField] private Animator kitchenAnimator;
 
     private void Start()
     {
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab)) MoneyTotal += 1000;
+        if (Input.GetKeyDown(KeyCode.Tab)) MoneyTotal += 1000000000000;
     }
 
     public void EarnMoney() //called by: OrderFinished
@@ -81,14 +81,28 @@ public class GameManager : MonoBehaviour
 
     private void ReduceOrderPrepTime() //called by: UpgradePrepTime()
     {
-        OrderPrepTime -= OrderPrepTimeReduceAmmount;
+        OrderPrepTime -= OrderPrepTimeReduceAmmount; //reduce the time required to prepare an order
         Debug.Log("Prep time reduced!");
+
+        float nextPrepTime = OrderPrepTime - OrderPrepTimeReduceAmmount; //check the value of the next upgrade
+
+        if (nextPrepTime < Settings.EmployeeSettings.MinOrderPrepTime) //if the next upgrade would pass the upgrade limit
+        {
+            RuntimeEvents.MaxServiceSpeedReached.Raise(); //show the button blocker
+        }
     }
 
     private void ReduceCustomerSpawnCooldown() //called by: UpgradeCustomerSpawnSpeed()
     {
-        CustomerSpawnCooldown -= Settings.ShopSettings.SpawnCooldownReduceAmmount;
+        CustomerSpawnCooldown -= Settings.ShopSettings.SpawnCooldownReduceAmmount; //reduce the time required to wait for next customer auto-spawn
         Debug.Log("Customer spawn cooldown reduced!");
+
+        float nextCooldown = CustomerSpawnCooldown - Settings.ShopSettings.SpawnCooldownReduceAmmount; //check the value of the next upgrade
+
+        if(nextCooldown < Settings.CustomerSettings.MinSpawnCooldown) //if the next upgrade is not within the limit
+        {
+            RuntimeEvents.MaxCustomerSpawnReached.Raise(); //block further upgrades
+        }
     }
 
     private void ChangeDishRecipe() //called by: UpgradeDishRecipe()
@@ -100,9 +114,21 @@ public class GameManager : MonoBehaviour
 
         CurrentDishRecipe++; //increment the current dish recipe index
 
+        if (CurrentDishRecipe == 1) kitchenAnimator.Play("ChangeToHotdog");
+        else if (CurrentDishRecipe == 2) kitchenAnimator.Play("ChangeToPizza");
+
         Debug.Log("New dish is being served");
 
         //change the appearance of the dish being served
+
+        int nextRecipe = CurrentDishRecipe + 1; //check what is the next dish recipe
+
+        if (nextRecipe > Settings.ShopSettings.MaxDishRecipes) //if there is no more recipes to buy
+        {
+            RuntimeEvents.MaxRecipeReached.Raise(); //show button blocker
+        }
+
+        RuntimeEvents.RecipeChanged.Raise(); //allow the player to further reduce prep time
     }
 
     private void BuyUpgrade(string method, ref int boughtSegments, int numberOfSegments)

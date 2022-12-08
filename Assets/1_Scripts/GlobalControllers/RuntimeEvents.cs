@@ -28,6 +28,22 @@ public class RuntimeEvents : MonoBehaviour
     [SerializeField] private GameEvent customerSpawnSpeedUpgraded;
     public static GameEvent CustomerSpawnSpeedUpgraded;
 
+    [SerializeField] private GameEvent recipeChanged;
+    public static GameEvent RecipeChanged;
+
+    [Header("MAX UPGRADE EVENTS: ")]
+    [SerializeField] private GameEvent maxCustomerSpawnReached;
+    public static GameEvent MaxCustomerSpawnReached;
+
+    [SerializeField] private GameEvent maxEmployeesReached;
+    public static GameEvent MaxEmployeesReached;
+
+    [SerializeField] private GameEvent maxRecipeReached;
+    public static GameEvent MaxRecipeReached;
+
+    [SerializeField] private GameEvent maxServiceSpeedReached;
+    public static GameEvent MaxServiceSpeedReached;
+
     private void Awake()
     {
         OrderAccepted = orderAccepted;
@@ -38,5 +54,11 @@ public class RuntimeEvents : MonoBehaviour
         DishRecipeUpgraded = dishRecipeUpgraded;
         ServiceSpeedUpgraded = serviceSpeedUpgraded;
         CustomerSpawnSpeedUpgraded = customerSpawnSpeedUpgraded;
+
+        MaxCustomerSpawnReached = maxCustomerSpawnReached;
+        MaxEmployeesReached = maxEmployeesReached;
+        MaxRecipeReached = maxRecipeReached;
+        MaxServiceSpeedReached = maxServiceSpeedReached;
+        RecipeChanged = recipeChanged;
     }
 }
