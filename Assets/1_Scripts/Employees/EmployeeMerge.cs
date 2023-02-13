@@ -8,10 +8,12 @@ public class EmployeeMerge : MonoBehaviour
     private Vector3 startPosition;
     private bool isDragged;
     [SerializeField] private GameObject nextLevelPrefab;
+    [SerializeField] private GameObject poofParticle;
 
     private void Start()
     {
         startPosition = transform.position;
+        GetComponent<Animator>().Play("Spawn", 0, 0f);
     }
 
     private void OnMouseDown()
@@ -45,7 +47,12 @@ public class EmployeeMerge : MonoBehaviour
     {
         if(other.CompareTag("Employee"))
         {
-            if (!isDragged) Instantiate(nextLevelPrefab, transform.position, transform.rotation);
+            if (!isDragged)
+            {
+                Instantiate(nextLevelPrefab, transform.position, transform.rotation);
+                Instantiate(poofParticle, transform.position, transform.rotation);
+            }
+            
             Destroy(gameObject);
         }
     }
