@@ -5698,6 +5698,56 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 364533601000905827, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 364533601000905827, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 364533601000905827, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 364533601000905827, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443164105601154200, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 245603364}
+    - target: {fileID: 1674038326741746222, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294635469059036495, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294635469059036495, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294635469059036495, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294635469059036495, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6720103587940718728, guid: ee3d774fa5d98304887d3b0e9ba62371,
         type: 3}
       propertyPath: m_Pivot.x
