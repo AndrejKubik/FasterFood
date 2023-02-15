@@ -2325,6 +2325,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 6822551930688475726, guid: c985a65a323ef634cb46bde2d702bd33,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6841456100805836307, guid: c985a65a323ef634cb46bde2d702bd33,
         type: 3}
       propertyPath: m_Name
@@ -5857,6 +5862,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6720103587940718733, guid: ee3d774fa5d98304887d3b0e9ba62371,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7327933876444312866, guid: ee3d774fa5d98304887d3b0e9ba62371,
         type: 3}
