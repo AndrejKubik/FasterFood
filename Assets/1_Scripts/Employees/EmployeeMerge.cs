@@ -6,6 +6,7 @@ public class EmployeeMerge : MonoBehaviour
 {
     private float zCoordinate;
     private Vector3 startPosition;
+    private Quaternion startRotation;
     public bool IsDragged;
     private Employee employee;
     private Animator animator;
@@ -14,9 +15,19 @@ public class EmployeeMerge : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         employee = GetComponent<Employee>();
-
         animator.Play("Spawn", 0, 0f);
+    }
+
+    private void OnEnable()
+    {
+        if (animator != null)
+        {
+            animator.Play("Spawn", 0, 0f);
+            //animator.applyRootMotion = true;
+        }
+
         startPosition = transform.position;
+        startRotation = transform.rotation;
     }
 
     private void OnMouseDown()
@@ -33,9 +44,7 @@ public class EmployeeMerge : MonoBehaviour
 
     private void OnMouseUp()
     {
-        animator.Play("Idle", 0, 0f);
-        IsDragged = false;
-        transform.position = startPosition;
+        ResetEmployee();
     }
 
     private Vector3 MouseWorldPosition()
@@ -48,7 +57,7 @@ public class EmployeeMerge : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Employee"))
+        if(other.gameObject.layer == GameLayers.Employee)
         {
             if (!IsDragged)
             {
@@ -56,16 +65,16 @@ public class EmployeeMerge : MonoBehaviour
             }
             else if(IsDragged)
             {
-                RuntimeEvents.EmployeesMerged.Raise();
                 ForceOrderFinish();
+                ResetEmployee();
                 gameObject.SetActive(false);
+                RuntimeEvents.EmployeesMerged.Raise();
             }
         }
     }
 
     private void ForceOrderFinish()
     {
-        RuntimeEvents.NewCustomerAtCounter.Raise();
         if(employee.ServedCustomer != null)
         {
             ParticleManager.DisappearParticlePosition = employee.ServedCustomer.position; //let the particle manager know where to spawn a poof particle
@@ -73,5 +82,14 @@ public class EmployeeMerge : MonoBehaviour
             RuntimeEvents.OrderFinished.Raise();
             Destroy(employee.ServedCustomer.gameObject); //remove the completely served customer from the game
         }
+        RuntimeEvents.NewCustomerAtCounter.Raise();
+    }
+
+    private void ResetEmployee()
+    {
+        IsDragged = false;
+        transform.position = startPosition;
+        transform.rotation = startRotation;
+        animator.StopPlayback();
     }
 }

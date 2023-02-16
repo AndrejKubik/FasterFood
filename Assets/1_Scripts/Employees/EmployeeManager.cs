@@ -6,22 +6,44 @@ public class EmployeeManager : MonoBehaviour
 {
     public static List<Employee> ActiveEmployees = new List<Employee>();
     [SerializeField] private Transform employeesParent;
-    private List<GameObject> allEmployees = new List<GameObject>();
+    private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
+    [SerializeField] private List<Transform> spawnPositions = new List<Transform>();
 
     public static Transform OrderingCustomer;
-
     private bool currentCustomerServed;
+
+    [SerializeField] private GameObject employeePrefab;
+
+    class SpawnPoint
+    {
+        public Vector3 Position;
+        public Quaternion Rotation;
+        public bool IsOccupied;
+
+        public SpawnPoint(Vector3 position, Quaternion rotation, bool isOccupied)
+        {
+            Position = position;
+            IsOccupied = isOccupied;
+            Rotation = rotation;
+        }
+    }
 
     private void Start()
     {
         SetExistingEmployeesAsActive(); //set all active worker objects on the scene as active employees so they can serve customers
+        HireAnEmployee();
     }
 
     public void ServeCustomer() //called by: NewCustomerAtCounter
     {
         if(CustomerManager.WaitingCustomers.Count > 0)
         {
-            if (OrderingCustomer == null && CustomerManager.WaitingCustomers[0].GetComponent<CustomerMovement>().counterReached) OrderingCustomer = CustomerManager.WaitingCustomers[0];
+            CustomerMovement firstInLine = CustomerManager.WaitingCustomers[0].GetComponent<CustomerMovement>();
+
+            if (OrderingCustomer == null && firstInLine.counterReached)
+            {
+                OrderingCustomer = CustomerManager.WaitingCustomers[0];
+            }
 
             for (int i = 0; i < ActiveEmployees.Count; i++) //check all employees' statuses
             {
@@ -30,34 +52,35 @@ public class EmployeeManager : MonoBehaviour
                     currentCustomerServed = true;
                     ActiveEmployees[i].ServedCustomer = OrderingCustomer; //assign the current customer to the current employee
                     RuntimeEvents.OrderAccepted.Raise();
+                    OrderingCustomer = null; //clear out the slot for the next customer
+                    currentCustomerServed = false; //let the next customer be assigned to an employee
                 }
             }
-
-            OrderingCustomer = null; //clear out the slot for the next customer
-            currentCustomerServed = false; //let the next customer be assigned to an employee
         }
     }
 
     private void SetExistingEmployeesAsActive()
     {
-        for (int i = 0; i < employeesParent.childCount; i++)
+        for (int i = 0; i < spawnPositions.Count; i++)
         {
-            allEmployees.Add(employeesParent.GetChild(i).gameObject);
-            Employee employee = employeesParent.GetChild(i).GetComponent<Employee>();
-
-            if(employee.gameObject.activeSelf) ActiveEmployees.Add(employee);
+            spawnPoints.Add(new SpawnPoint(spawnPositions[i].position, spawnPositions[i].rotation, false));
         }
     }
 
     public void HireAnEmployee() //called by: EmployeeHired
     {
-        allEmployees[ActiveEmployees.Count].SetActive(true); //show the next worker object on the scene
-        Settings.CameraControl.targetGroup.AddMember(allEmployees[ActiveEmployees.Count].GetComponent<Employee>().CameraTarget, 1f, 0f); ; //add the fresh employee as an additional target for the camera to keep in sight
-        ActiveEmployees.Add(allEmployees[ActiveEmployees.Count].GetComponent<Employee>()); //set the newly shown employee as active so he can receive and prepare orders
+        for (int i = 0; i < spawnPoints.Count; i++)
+        {
+            if(!spawnPoints[i].IsOccupied)
+            {
+                GameObject newEmployee = Instantiate(employeePrefab, spawnPoints[i].Position, spawnPoints[i].Rotation);
+                ActiveEmployees.Add(newEmployee.GetComponent<Employee>());
+                spawnPoints[i].IsOccupied = true;
+                return;
+            }
+        }
         
-        if (ActiveEmployees.Count >= allEmployees.Count) RuntimeEvents.MaxEmployeesReached.Raise();
-        
-        ServeCustomer(); //if there is customers lined-up, serve the next one right away
+        //if (ActiveEmployees.Count >= allEmployees.Count) RuntimeEvents.MaxEmployeesReached.Raise();
     }
 
 }

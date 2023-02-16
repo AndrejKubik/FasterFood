@@ -1220,7 +1220,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.000000018301765, y: 0.8435617, z: -0.5370323, w: -0.000000028748119}
+  m_LocalRotation: {x: -0.000000018480762, y: 0.8435617, z: -0.5370323, w: -0.000000029029286}
   m_LocalPosition: {x: -0.6, y: 13.518988, z: 3.695701}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2334,6 +2334,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Employee1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841456100805836307, guid: c985a65a323ef634cb46bde2d702bd33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7019391746966043144, guid: c985a65a323ef634cb46bde2d702bd33,
         type: 3}
@@ -4222,6 +4227,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   employeesParent: {fileID: 1062306979}
+  spawnPositions:
+  - {fileID: 2069105551}
+  - {fileID: 1664343554}
+  - {fileID: 1759807654}
+  - {fileID: 448282361}
+  - {fileID: 1860739934}
+  - {fileID: 1310941329}
+  - {fileID: 724525313}
+  - {fileID: 1260791628}
+  - {fileID: 1476464393}
+  - {fileID: 1020411566}
+  - {fileID: 557413386}
+  - {fileID: 353805930}
+  - {fileID: 526014553}
+  - {fileID: 2088609288}
+  - {fileID: 207244414}
+  employeePrefab: {fileID: 6841456100805836307, guid: c985a65a323ef634cb46bde2d702bd33,
+    type: 3}
 --- !u!114 &1341251526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4593,7 +4616,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461896356}
-  m_LocalRotation: {x: -0.000000018301765, y: 0.8435617, z: -0.5370323, w: -0.000000028748119}
+  m_LocalRotation: {x: -0.000000018480762, y: 0.8435617, z: -0.5370323, w: -0.000000029029286}
   m_LocalPosition: {x: -0.6, y: 13.099999, z: 3.5000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

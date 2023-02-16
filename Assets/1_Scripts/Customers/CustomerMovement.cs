@@ -27,14 +27,14 @@ public class CustomerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Counter")) //when the customer reaches the counter
+        if (other.gameObject.layer == GameLayers.Counter) //when the customer reaches the counter
         {
             counterReached = true; //stop moving
             EmployeeManager.OrderingCustomer = transform; //cache this customer as the one currently being served
             RuntimeEvents.NewCustomerAtCounter.Raise();
             animator.SetBool("Moving", false); //stop the customer movement animation
         }
-        else if(other.CompareTag("Customer")) //when a customer touches another customer in line
+        else if(other.gameObject.layer == GameLayers.Customer) //when a customer touches another customer in line
         {
             if(customerInFront == null) //if the customer hasn't touched another already
             {
@@ -50,12 +50,12 @@ public class CustomerMovement : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Customer"))
+        if(other.gameObject.layer == GameLayers.Customer)
         {
             customerInFront = null; //clear out the front customer slot so this one can keep moving
             if(!counterReached) animator.SetBool("Moving", true); //start looping the skipping animation for the customer
         }
-        else if(other.CompareTag("Entrance"))
+        else if(other.gameObject.layer == GameLayers.Entrance)
         {
             Invoke("FreeTheEntrance", Settings.CustomerSettings.EntranceFreeDelay);
         }

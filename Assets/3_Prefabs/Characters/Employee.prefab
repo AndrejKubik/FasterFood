@@ -1019,7 +1019,7 @@ GameObject:
   - component: {fileID: -1609119077018286575}
   - component: {fileID: 8475506975230262152}
   - component: {fileID: 228866323493233581}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Employee
   m_TagString: Employee
   m_Icon: {fileID: 0}
@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24b92881e27b9845aa990daa803c15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  employee: {fileID: 7495633216363049994}
+  IsDragged: 0
 --- !u!114 &-1609119077018286575
 MonoBehaviour:
   m_ObjectHideFlags: 0
