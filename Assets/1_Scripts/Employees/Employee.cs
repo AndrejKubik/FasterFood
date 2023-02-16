@@ -16,10 +16,9 @@ public class Employee : MonoBehaviour
     [SerializeField] private Image progressBarBackground;
 
     private float prepTime;
-
     private Animator animator;
-
     public Transform CameraTarget;
+    private EmployeeMerge employeeMerge;
 
     [Header("MODEL PARENTS: ")]
     [SerializeField] private Transform hats;
@@ -33,15 +32,19 @@ public class Employee : MonoBehaviour
         //CharacterAppearance.ShowRandomModel(bodies);
 
         animator = GetComponent<Animator>();
+        employeeMerge = GetComponent<EmployeeMerge>();
     }
 
     private void Update()
     {
         if (customerBeingServed && ServedCustomer != null)
         {
-            ServedCustomer.position = Vector3.Lerp(ServedCustomer.position, CustomerWaitPosition.position, Settings.CustomerSettings.CustomerMovementSpeed * Time.deltaTime);
-
             progressBarFill.fillAmount = Mathf.MoveTowards(progressBarFill.fillAmount, 1f, Time.deltaTime * 1f / prepTime); //fill the progress to the end gradually to full while the order finishes
+            
+            if(!employeeMerge.IsDragged)
+            {
+                ServedCustomer.position = Vector3.Lerp(ServedCustomer.position, CustomerWaitPosition.position, Settings.CustomerSettings.CustomerMovementSpeed * Time.deltaTime);
+            }
         }
     }
 

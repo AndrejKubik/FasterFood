@@ -8,7 +8,6 @@ public class CustomerMovement : MonoBehaviour
 
     private bool waitingInLine;
     private GameObject customerInFront;
-
     private Animator animator;
 
     private void OnEnable()
@@ -18,7 +17,10 @@ public class CustomerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!counterReached && !waitingInLine) transform.Translate(Vector3.forward * Settings.CustomerSettings.CustomerMovementSpeed * Time.deltaTime); //move the customer toward the counter
+        if (!counterReached && !waitingInLine)
+        {
+            transform.Translate(Vector3.forward * Settings.CustomerSettings.CustomerMovementSpeed * Time.deltaTime); //move the customer toward the counter
+        }
 
         if(customerInFront == null) waitingInLine = false; //if there is no customers in front, stop waiting in line and keep moving
     }
@@ -28,11 +30,8 @@ public class CustomerMovement : MonoBehaviour
         if (other.CompareTag("Counter")) //when the customer reaches the counter
         {
             counterReached = true; //stop moving
-
             EmployeeManager.OrderingCustomer = transform; //cache this customer as the one currently being served
-
             RuntimeEvents.NewCustomerAtCounter.Raise();
-
             animator.SetBool("Moving", false); //stop the customer movement animation
         }
         else if(other.CompareTag("Customer")) //when a customer touches another customer in line
