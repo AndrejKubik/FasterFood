@@ -28,9 +28,9 @@ public class Employee : MonoBehaviour
 
     private void OnEnable()
     {
-        CharacterAppearance.ShowRandomModel(hats);
-        CharacterAppearance.ShowRandomModel(heads);
-        CharacterAppearance.ShowRandomModel(bodies);
+        //CharacterAppearance.ShowRandomModel(hats);
+        //CharacterAppearance.ShowRandomModel(heads);
+        //CharacterAppearance.ShowRandomModel(bodies);
 
         animator = GetComponent<Animator>();
     }
@@ -50,7 +50,7 @@ public class Employee : MonoBehaviour
         if(!customerBeingServed && ServedCustomer != null) StartCoroutine(OrderPrep(GameManager.OrderPrepTime)); //start preparing the order for the assigned customer
     }
 
-    IEnumerator OrderPrep(float delay)
+    public IEnumerator OrderPrep(float delay)
     {
         if(CustomerManager.WaitingCustomers.Count > 0)
         {

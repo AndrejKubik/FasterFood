@@ -7,13 +7,16 @@ public class EmployeeMerge : MonoBehaviour
     private float zCoordinate;
     private Vector3 startPosition;
     private bool isDragged;
-    [SerializeField] private GameObject nextLevelPrefab;
-    [SerializeField] private GameObject poofParticle;
+    [SerializeField] private Employee employee;
+    private Animator animator;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        employee = GetComponent<Employee>();
+
+        animator.Play("Spawn", 0, 0f);
         startPosition = transform.position;
-        GetComponent<Animator>().Play("Spawn", 0, 0f);
     }
 
     private void OnMouseDown()
@@ -30,7 +33,7 @@ public class EmployeeMerge : MonoBehaviour
 
     private void OnMouseUp()
     {
-        GetComponent<Animator>().Play("Idle", 0, 0f);
+        animator.Play("Idle", 0, 0f);
         isDragged = false;
         transform.position = startPosition;
     }
@@ -49,11 +52,16 @@ public class EmployeeMerge : MonoBehaviour
         {
             if (!isDragged)
             {
-                Instantiate(nextLevelPrefab, transform.position, transform.rotation);
-                Instantiate(poofParticle, transform.position, transform.rotation);
+                ParticleManager.DisappearParticlePosition = transform.position;
+                RuntimeEvents.EmployeesMerged.Raise();
+                RuntimeEvents.NewCustomerAtCounter.Raise();
+                RuntimeEvents.OrderFinished.Raise();
             }
-            
-            Destroy(gameObject);
+            else if(isDragged)
+            {
+                Destroy(employee.ServedCustomer.gameObject);
+                Destroy(gameObject);
+            }
         }
     }
 }

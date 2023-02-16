@@ -16,6 +16,9 @@ public class RuntimeEvents : MonoBehaviour
     [SerializeField] private GameEvent employeeHired;
     public static GameEvent EmployeeHired;
 
+    [SerializeField] private GameEvent employeesMerged;
+    public static GameEvent EmployeesMerged;
+
     [SerializeField] private GameEvent orderFinished;
     public static GameEvent OrderFinished;
 
@@ -57,6 +60,7 @@ public class RuntimeEvents : MonoBehaviour
         NewCustomerAtCounter = newCustomerAtCounter;
         CustomerBaited = customerBaited;
         EmployeeHired = employeeHired;
+        EmployeesMerged = employeesMerged;
         OrderFinished = orderFinished;
         DishRecipeUpgraded = dishRecipeUpgraded;
         ServiceSpeedUpgraded = serviceSpeedUpgraded;

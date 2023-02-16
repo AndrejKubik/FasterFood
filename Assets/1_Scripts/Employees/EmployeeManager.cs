@@ -53,19 +53,12 @@ public class EmployeeManager : MonoBehaviour
 
     public void HireAnEmployee() //called by: EmployeeHired
     {
-        if (ActiveEmployees.Count < allEmployees.Count)
-        {
-            
-        }
-
         allEmployees[ActiveEmployees.Count].SetActive(true); //show the next worker object on the scene
-
         Settings.CameraControl.targetGroup.AddMember(allEmployees[ActiveEmployees.Count].GetComponent<Employee>().CameraTarget, 1f, 0f); ; //add the fresh employee as an additional target for the camera to keep in sight
-
         ActiveEmployees.Add(allEmployees[ActiveEmployees.Count].GetComponent<Employee>()); //set the newly shown employee as active so he can receive and prepare orders
-
+        
         if (ActiveEmployees.Count >= allEmployees.Count) RuntimeEvents.MaxEmployeesReached.Raise();
-
+        
         ServeCustomer(); //if there is customers lined-up, serve the next one right away
     }
 
