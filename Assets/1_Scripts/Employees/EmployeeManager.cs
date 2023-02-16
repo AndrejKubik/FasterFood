@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class EmployeeManager : MonoBehaviour
 {
-    public static List<Employee> ActiveEmployees = new List<Employee>();
     [SerializeField] private Transform employeesParent;
-    private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
     [SerializeField] private List<Transform> spawnPositions = new List<Transform>();
+    public static List<SpawnPoint> SpawnPoints = new List<SpawnPoint>();
+    public static List<Employee> ActiveEmployees = new List<Employee>();
 
     public static Transform OrderingCustomer;
     private bool currentCustomerServed;
 
     [SerializeField] private GameObject employeePrefab;
 
-    class SpawnPoint
+    public class SpawnPoint
     {
         public Vector3 Position;
         public Quaternion Rotation;
@@ -30,7 +30,7 @@ public class EmployeeManager : MonoBehaviour
 
     private void Start()
     {
-        SetExistingEmployeesAsActive(); //set all active worker objects on the scene as active employees so they can serve customers
+        LoadAllSpawnPoints(); //set all active worker objects on the scene as active employees so they can serve customers
         HireAnEmployee();
     }
 
@@ -51,31 +51,34 @@ public class EmployeeManager : MonoBehaviour
                 {
                     currentCustomerServed = true;
                     ActiveEmployees[i].ServedCustomer = OrderingCustomer; //assign the current customer to the current employee
-                    RuntimeEvents.OrderAccepted.Raise();
                     OrderingCustomer = null; //clear out the slot for the next customer
-                    currentCustomerServed = false; //let the next customer be assigned to an employee
+                    RuntimeEvents.OrderAccepted.Raise();
                 }
             }
+
+            currentCustomerServed = false; //let the next customer be assigned to an employee
         }
     }
 
-    private void SetExistingEmployeesAsActive()
+    private void LoadAllSpawnPoints()
     {
         for (int i = 0; i < spawnPositions.Count; i++)
         {
-            spawnPoints.Add(new SpawnPoint(spawnPositions[i].position, spawnPositions[i].rotation, false));
+            SpawnPoints.Add(new SpawnPoint(spawnPositions[i].position, spawnPositions[i].rotation, false));
         }
     }
 
     public void HireAnEmployee() //called by: EmployeeHired
     {
-        for (int i = 0; i < spawnPoints.Count; i++)
+        for (int i = 0; i < SpawnPoints.Count; i++)
         {
-            if(!spawnPoints[i].IsOccupied)
+            if(!SpawnPoints[i].IsOccupied)
             {
-                GameObject newEmployee = Instantiate(employeePrefab, spawnPoints[i].Position, spawnPoints[i].Rotation);
+                GameObject newEmployee = Instantiate(employeePrefab, SpawnPoints[i].Position, SpawnPoints[i].Rotation);
                 ActiveEmployees.Add(newEmployee.GetComponent<Employee>());
-                spawnPoints[i].IsOccupied = true;
+                newEmployee.GetComponent<EmployeeMerge>().SpawnPointIndex = ActiveEmployees.Count - 1;
+                SpawnPoints[i].IsOccupied = true;
+                RuntimeEvents.NewCustomerAtCounter.Raise();
                 return;
             }
         }

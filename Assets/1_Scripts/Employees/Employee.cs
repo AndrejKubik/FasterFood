@@ -18,6 +18,7 @@ public class Employee : MonoBehaviour
     private float prepTime;
     private Animator animator;
     public Transform CameraTarget;
+
     private EmployeeMerge employeeMerge;
 
     [Header("MODEL PARENTS: ")]

@@ -10,6 +10,7 @@ public class EmployeeMerge : MonoBehaviour
     public bool IsDragged;
     private Employee employee;
     private Animator animator;
+    public int SpawnPointIndex;
 
     private void Start()
     {
@@ -67,8 +68,10 @@ public class EmployeeMerge : MonoBehaviour
             {
                 ForceOrderFinish();
                 ResetEmployee();
-                gameObject.SetActive(false);
                 RuntimeEvents.EmployeesMerged.Raise();
+                EmployeeManager.ActiveEmployees.RemoveAt(SpawnPointIndex);
+                EmployeeManager.SpawnPoints[SpawnPointIndex].IsOccupied = false;
+                Destroy(gameObject);
             }
         }
     }
@@ -82,7 +85,7 @@ public class EmployeeMerge : MonoBehaviour
             RuntimeEvents.OrderFinished.Raise();
             Destroy(employee.ServedCustomer.gameObject); //remove the completely served customer from the game
         }
-        RuntimeEvents.NewCustomerAtCounter.Raise();
+        //RuntimeEvents.NewCustomerAtCounter.Raise();
     }
 
     private void ResetEmployee()
@@ -90,6 +93,5 @@ public class EmployeeMerge : MonoBehaviour
         IsDragged = false;
         transform.position = startPosition;
         transform.rotation = startRotation;
-        animator.StopPlayback();
     }
 }

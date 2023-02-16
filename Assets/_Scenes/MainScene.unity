@@ -1040,7 +1040,7 @@ GameObject:
   - component: {fileID: 329727357}
   - component: {fileID: 329727360}
   - component: {fileID: 329727359}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CustomerSpawnPoint
   m_TagString: Entrance
   m_Icon: {fileID: 0}
@@ -1220,7 +1220,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.000000018480762, y: 0.8435617, z: -0.5370323, w: -0.000000029029286}
+  m_LocalRotation: {x: -0.000000018477957, y: 0.8435617, z: -0.5370323, w: -0.000000029024879}
   m_LocalPosition: {x: -0.6, y: 13.518988, z: 3.695701}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1965,7 +1965,7 @@ GameObject:
   - component: {fileID: 535562502}
   - component: {fileID: 535562501}
   - component: {fileID: 535562500}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CounterStopper
   m_TagString: Counter
   m_Icon: {fileID: 0}
@@ -4616,7 +4616,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461896356}
-  m_LocalRotation: {x: -0.000000018480762, y: 0.8435617, z: -0.5370323, w: -0.000000029029286}
+  m_LocalRotation: {x: -0.000000018477957, y: 0.8435617, z: -0.5370323, w: -0.000000029024879}
   m_LocalPosition: {x: -0.6, y: 13.099999, z: 3.5000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5203,6 +5203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1908785724}
   - component: {fileID: 1908785725}
+  - component: {fileID: 1908785727}
   - component: {fileID: 1908785726}
   m_Layer: 0
   m_Name: Settings
@@ -5255,6 +5256,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetGroup: {fileID: 150178582}
   camera2: {fileID: 55422212}
+--- !u!114 &1908785727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908785723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5364b7dc749804997772594af950f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  employee: 6
+  counter: 7
+  customer: 8
+  entrance: 9
 --- !u!1001 &1917485170
 PrefabInstance:
   m_ObjectHideFlags: 0
