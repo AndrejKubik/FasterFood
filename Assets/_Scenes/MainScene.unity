@@ -1220,7 +1220,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.000000018480764, y: 0.8435617, z: -0.5370323, w: -0.000000029029287}
+  m_LocalRotation: {x: -0.000000018301765, y: 0.8435617, z: -0.5370323, w: -0.000000028748119}
   m_LocalPosition: {x: -0.6, y: 13.518988, z: 3.695701}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3837,6 +3837,7 @@ GameObject:
   - component: {fileID: 1255614191}
   - component: {fileID: 1255614193}
   - component: {fileID: 1255614192}
+  - component: {fileID: 1255614194}
   m_Layer: 0
   m_Name: ParticleManager
   m_TagString: Untagged
@@ -3915,6 +3916,34 @@ MonoBehaviour:
     type: 3}
   cashEarnedParticle: {fileID: 8902436903357692258, guid: cefb8628281d4e741b73d62f7314f1c9,
     type: 3}
+--- !u!114 &1255614194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255614190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d8d8eac627d04438196a20b37a498e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 098a3e0ca64118241965195ac2e21b83, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1255614193}
+        m_TargetAssemblyTypeName: ParticleManager, Assembly-CSharp
+        m_MethodName: SpawnCustomerDisappearParticle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1260791628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1400391999872421504, guid: c985a65a323ef634cb46bde2d702bd33,
@@ -4129,6 +4158,7 @@ GameObject:
   - component: {fileID: 1341251525}
   - component: {fileID: 1341251524}
   - component: {fileID: 1341251526}
+  - component: {fileID: 1341251527}
   m_Layer: 0
   m_Name: EmployeeManager
   m_TagString: Untagged
@@ -4211,6 +4241,34 @@ MonoBehaviour:
       - m_Target: {fileID: 1341251525}
         m_TargetAssemblyTypeName: EmployeeManager, Assembly-CSharp
         m_MethodName: HireAnEmployee
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1341251527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341251522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d8d8eac627d04438196a20b37a498e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 098a3e0ca64118241965195ac2e21b83, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1341251525}
+        m_TargetAssemblyTypeName: EmployeeManager, Assembly-CSharp
+        m_MethodName: ServeCustomer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4535,7 +4593,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461896356}
-  m_LocalRotation: {x: -0.000000018480764, y: 0.8435617, z: -0.5370323, w: -0.000000029029287}
+  m_LocalRotation: {x: -0.000000018301765, y: 0.8435617, z: -0.5370323, w: -0.000000028748119}
   m_LocalPosition: {x: -0.6, y: 13.099999, z: 3.5000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4637,6 +4695,7 @@ MonoBehaviour:
     type: 2}
   customerBaited: {fileID: 11400000, guid: 299bfe16f5de1b447b7b817a9d10d8ed, type: 2}
   employeeHired: {fileID: 11400000, guid: b6bfa52ccd6c13046b7728857cacd984, type: 2}
+  employeesMerged: {fileID: 11400000, guid: 098a3e0ca64118241965195ac2e21b83, type: 2}
   orderFinished: {fileID: 11400000, guid: 2a9c2c7d19b50704d90cf32c49a2ed8d, type: 2}
   dishRecipeUpgraded: {fileID: 11400000, guid: 4da2054d4fd97d2429986384bc206f46, type: 2}
   serviceSpeedUpgraded: {fileID: 11400000, guid: d480ba789421dba44a69be9851712eb4,

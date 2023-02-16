@@ -7,7 +7,7 @@ public class EmployeeMerge : MonoBehaviour
     private float zCoordinate;
     private Vector3 startPosition;
     private bool isDragged;
-    [SerializeField] private Employee employee;
+    private Employee employee;
     private Animator animator;
 
     private void Start()
@@ -53,13 +53,10 @@ public class EmployeeMerge : MonoBehaviour
             if (!isDragged)
             {
                 ParticleManager.DisappearParticlePosition = transform.position;
-                RuntimeEvents.EmployeesMerged.Raise();
-                RuntimeEvents.NewCustomerAtCounter.Raise();
-                RuntimeEvents.OrderFinished.Raise();
             }
             else if(isDragged)
             {
-                Destroy(employee.ServedCustomer.gameObject);
+                RuntimeEvents.EmployeesMerged.Raise();
                 Destroy(gameObject);
             }
         }

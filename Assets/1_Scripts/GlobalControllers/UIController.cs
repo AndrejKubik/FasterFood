@@ -83,7 +83,13 @@ public class UIController : MonoBehaviour
 
     public void HireAnEmployee() //called by a button
     {
-        SpendMoney(GameManager.CurrentEmployeePrice, RuntimeEvents.EmployeeHired); //if the another level is available for this upgrade, buy it
+        if (GameManager.MoneyTotal >= GameManager.CurrentEmployeePrice)
+        {
+            RuntimeEvents.EmployeeHired.Raise();
+            GameManager.MoneyTotal -= GameManager.CurrentEmployeePrice;
+        }
+        else Debug.Log("Not enough money!");
+
         UpdateCostText(employeeCost, GameManager.CurrentEmployeePrice);
         PlayButtonAnimation(employeeButtonAnimator);
     }

@@ -28,9 +28,7 @@ public class EmployeeManager : MonoBehaviour
                 if (ActiveEmployees[i].ServedCustomer == null && !currentCustomerServed) //when the loop caches an employee that is empty-handed
                 {
                     currentCustomerServed = true;
-
                     ActiveEmployees[i].ServedCustomer = OrderingCustomer; //assign the current customer to the current employee
-
                     RuntimeEvents.OrderAccepted.Raise();
                 }
             }

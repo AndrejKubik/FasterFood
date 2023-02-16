@@ -47,26 +47,22 @@ public class Employee : MonoBehaviour
 
     public void PrepareOrder() //called by: OrderAccepted
     {
-        if(!customerBeingServed && ServedCustomer != null) StartCoroutine(OrderPrep(GameManager.OrderPrepTime)); //start preparing the order for the assigned customer
+        if(!customerBeingServed && ServedCustomer != null) StartCoroutine(OrderPrep()); //start preparing the order for the assigned customer
     }
 
-    public IEnumerator OrderPrep(float delay)
+    public IEnumerator OrderPrep()
     {
         if(CustomerManager.WaitingCustomers.Count > 0)
         {
             animator.SetTrigger("OrderStarted"); //start the order prep animation
-
             CustomerManager.WaitingCustomers.RemoveAt(0);
-
-            prepTime = delay;
-
+            prepTime = GameManager.OrderPrepTime;
             progressBarFill.sprite = progressBarSprites[GameManager.CurrentDishRecipe];
             progressBarBackground.sprite = progressBarSprites[GameManager.CurrentDishRecipe];
             progressBar.SetActive(true); //show the preparation progress bar above the employee
-
             customerBeingServed = true;
 
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(prepTime);
 
             if (ServedCustomer != null)
             {
@@ -76,15 +72,11 @@ public class Employee : MonoBehaviour
             }
 
             ServedCustomer = null;
-
             customerBeingServed = false;
-
             progressBarFill.fillAmount = 0f; //reset the employee's progress bar
             progressBar.SetActive(false); //hide the preparation progress bar above the employee
-
             RuntimeEvents.NewCustomerAtCounter.Raise();
             RuntimeEvents.OrderFinished.Raise();
-
             animator.SetTrigger("OrderFinished"); //stop the order prep animation and play the money gain animation
         }
     }
