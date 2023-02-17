@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Employee : MonoBehaviour
 {
-    [HideInInspector] public Transform ServedCustomer;
+    public Transform ServedCustomer;
 
     private bool customerBeingServed;
     public Transform CustomerWaitPosition;
@@ -20,6 +20,11 @@ public class Employee : MonoBehaviour
     public Transform CameraTarget;
 
     private EmployeeMerge employeeMerge;
+
+    public GameObject Level1Hat;
+    public GameObject Level2Hat;
+    public GameObject Level1Body;
+    public GameObject Level2Body;
 
     [Header("MODEL PARENTS: ")]
     [SerializeField] private Transform hats;

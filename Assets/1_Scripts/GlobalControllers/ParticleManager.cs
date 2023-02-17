@@ -10,7 +10,7 @@ public class ParticleManager : MonoBehaviour
     [SerializeField] private GameObject cashEarnedParticle;
     public static Vector3 CashEarnedParticlePosition;
 
-    public void SpawnCustomerDisappearParticle() //called by: OrderFinished
+    public void SpawnCustomerDisappearParticle() //called by: OrderFinished + EmployeesMerged
     {
         SpawnParticle(customerDisappearParticle, ref DisappearParticlePosition);
     }

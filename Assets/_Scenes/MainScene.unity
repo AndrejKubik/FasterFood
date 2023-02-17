@@ -1195,7 +1195,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 72.74106
+  field of view: 72.741066
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1220,8 +1220,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.000000018477957, y: 0.8435617, z: -0.5370323, w: -0.000000029024879}
-  m_LocalPosition: {x: -0.6, y: 13.518988, z: 3.695701}
+  m_LocalRotation: {x: -0.000000011615891, y: 0.87870663, z: -0.4773622, w: -0.000000021382005}
+  m_LocalPosition: {x: -0.6, y: 9.0684185, z: 4.777011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4163,7 +4163,6 @@ GameObject:
   - component: {fileID: 1341251525}
   - component: {fileID: 1341251524}
   - component: {fileID: 1341251526}
-  - component: {fileID: 1341251527}
   m_Layer: 0
   m_Name: EmployeeManager
   m_TagString: Untagged
@@ -4243,7 +4242,8 @@ MonoBehaviour:
   - {fileID: 526014553}
   - {fileID: 2088609288}
   - {fileID: 207244414}
-  employeePrefab: {fileID: 6841456100805836307, guid: c985a65a323ef634cb46bde2d702bd33,
+  ActiveEmployees: []
+  employeePrefab: {fileID: 6841456100805836307, guid: b8c1e3a31677f68469f3163899450655,
     type: 3}
 --- !u!114 &1341251526
 MonoBehaviour:
@@ -4264,34 +4264,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1341251525}
         m_TargetAssemblyTypeName: EmployeeManager, Assembly-CSharp
         m_MethodName: HireAnEmployee
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1341251527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1341251522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d8d8eac627d04438196a20b37a498e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 098a3e0ca64118241965195ac2e21b83, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1341251525}
-        m_TargetAssemblyTypeName: EmployeeManager, Assembly-CSharp
-        m_MethodName: ServeCustomer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4616,8 +4588,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461896356}
-  m_LocalRotation: {x: -0.000000018477957, y: 0.8435617, z: -0.5370323, w: -0.000000029024879}
-  m_LocalPosition: {x: -0.6, y: 13.099999, z: 3.5000002}
+  m_LocalRotation: {x: -0.000000011615891, y: 0.87870663, z: -0.4773622, w: -0.000000021382005}
+  m_LocalPosition: {x: -0.6, y: 7.1, z: 3.5000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4788,7 +4760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 11, z: 6}
+  m_FollowOffset: {x: 0, y: 5, z: 6}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1

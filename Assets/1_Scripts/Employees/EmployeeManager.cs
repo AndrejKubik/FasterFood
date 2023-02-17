@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class EmployeeManager : MonoBehaviour
 {
+    public static EmployeeManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     [SerializeField] private Transform employeesParent;
     [SerializeField] private List<Transform> spawnPositions = new List<Transform>();
     public static List<SpawnPoint> SpawnPoints = new List<SpawnPoint>();
-    public static List<Employee> ActiveEmployees = new List<Employee>();
+    //public static List<Employee> ActiveEmployees = new List<Employee>();
+
+    public List<Employee> ActiveEmployees = new List<Employee>(); //debug part
 
     public static Transform OrderingCustomer;
     private bool currentCustomerServed;
@@ -19,12 +28,14 @@ public class EmployeeManager : MonoBehaviour
         public Vector3 Position;
         public Quaternion Rotation;
         public bool IsOccupied;
+        public int Index;
 
-        public SpawnPoint(Vector3 position, Quaternion rotation, bool isOccupied)
+        public SpawnPoint(Vector3 position, Quaternion rotation, int index, bool isOccupied)
         {
             Position = position;
             IsOccupied = isOccupied;
             Rotation = rotation;
+            Index = index;
         }
     }
 
@@ -64,21 +75,22 @@ public class EmployeeManager : MonoBehaviour
     {
         for (int i = 0; i < spawnPositions.Count; i++)
         {
-            SpawnPoints.Add(new SpawnPoint(spawnPositions[i].position, spawnPositions[i].rotation, false));
+            SpawnPoints.Add(new SpawnPoint(spawnPositions[i].position, spawnPositions[i].rotation, i, false));
         }
     }
 
     public void HireAnEmployee() //called by: EmployeeHired
     {
-        for (int i = 0; i < SpawnPoints.Count; i++)
+        for (int i = 0; i < SpawnPoints.Count; i++) 
         {
             if(!SpawnPoints[i].IsOccupied)
             {
                 GameObject newEmployee = Instantiate(employeePrefab, SpawnPoints[i].Position, SpawnPoints[i].Rotation);
-                ActiveEmployees.Add(newEmployee.GetComponent<Employee>());
-                newEmployee.GetComponent<EmployeeMerge>().SpawnPointIndex = ActiveEmployees.Count - 1;
+                var employee = newEmployee.GetComponent<Employee>();
+                ActiveEmployees.Add(employee);
+                newEmployee.GetComponent<EmployeeMerge>().SpawnPointIndex = i;
                 SpawnPoints[i].IsOccupied = true;
-                RuntimeEvents.NewCustomerAtCounter.Raise();
+                ServeCustomer();
                 return;
             }
         }
