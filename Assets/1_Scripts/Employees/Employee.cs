@@ -21,22 +21,8 @@ public class Employee : MonoBehaviour
 
     private EmployeeMerge employeeMerge;
 
-    public GameObject Level1Hat;
-    public GameObject Level2Hat;
-    public GameObject Level1Body;
-    public GameObject Level2Body;
-
-    [Header("MODEL PARENTS: ")]
-    [SerializeField] private Transform hats;
-    [SerializeField] private Transform heads;
-    [SerializeField] private Transform bodies;
-
     private void OnEnable()
     {
-        //CharacterAppearance.ShowRandomModel(hats);
-        //CharacterAppearance.ShowRandomModel(heads);
-        //CharacterAppearance.ShowRandomModel(bodies);
-
         animator = GetComponent<Animator>();
         employeeMerge = GetComponent<EmployeeMerge>();
     }
@@ -56,14 +42,17 @@ public class Employee : MonoBehaviour
 
     public void PrepareOrder() //called by: OrderAccepted
     {
-        if(!customerBeingServed && ServedCustomer != null) StartCoroutine(OrderPrep()); //start preparing the order for the assigned customer
+        if(!customerBeingServed && ServedCustomer != null)
+        {
+            StartCoroutine(OrderPrep()); //start preparing the order for the assigned customer
+        }
     }
 
     public IEnumerator OrderPrep()
     {
         if(CustomerManager.WaitingCustomers.Count > 0)
         {
-            animator.SetTrigger("OrderStarted"); //start the order prep animation
+            animator.SetTrigger("OrderStarted");
             CustomerManager.WaitingCustomers.RemoveAt(0);
             prepTime = GameManager.OrderPrepTime;
             progressBarFill.sprite = progressBarSprites[GameManager.CurrentDishRecipe];
@@ -84,9 +73,9 @@ public class Employee : MonoBehaviour
             customerBeingServed = false;
             progressBarFill.fillAmount = 0f; //reset the employee's progress bar
             progressBar.SetActive(false); //hide the preparation progress bar above the employee
+            animator.SetTrigger("OrderFinished");
             RuntimeEvents.NewCustomerAtCounter.Raise();
             RuntimeEvents.OrderFinished.Raise();
-            animator.SetTrigger("OrderFinished"); //stop the order prep animation and play the money gain animation
         }
     }
 }

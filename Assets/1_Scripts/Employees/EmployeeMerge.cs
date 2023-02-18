@@ -63,31 +63,18 @@ public class EmployeeMerge : MonoBehaviour
             if (!IsDragged)
             {
                 ParticleManager.DisappearParticlePosition = transform.position;
-                employee.Level1Hat.SetActive(false);
-                employee.Level2Hat.SetActive(true);
-                employee.Level1Body.SetActive(false);
-                employee.Level2Body.SetActive(true);
                 animator.Play("Spawn", 0, 0f);
             }
             else if(IsDragged)
             {
                 ForceOrderFinish();
                 //RuntimeEvents.EmployeesMerged.Raise();
-                //EmployeeManager.ActiveEmployees.RemoveAt(SpawnPointIndex);
                 EmployeeManager.instance.ActiveEmployees.Remove(employee); //debug part
-                //EmployeeManager.instance.ActiveEmployees.RemoveAt(SpawnPointIndex); //debug part
                 EmployeeManager.SpawnPoints[SpawnPointIndex].IsOccupied = false;
                 Destroy(gameObject);
             }
         }
     }
-
-    //private void OnDestroy()
-    //{
-    //    EmployeeManager.ActiveEmployees.RemoveAt(SpawnPointIndex);
-    //    EmployeeManager.instance.activeEmployees.RemoveAt(SpawnPointIndex); //debug part
-    //    EmployeeManager.SpawnPoints[SpawnPointIndex].IsOccupied = false;
-    //}
 
     private void ForceOrderFinish()
     {
@@ -95,11 +82,9 @@ public class EmployeeMerge : MonoBehaviour
         {
             ParticleManager.DisappearParticlePosition = employee.ServedCustomer.position; //let the particle manager know where to spawn a poof particle
             ParticleManager.CashEarnedParticlePosition = startPosition + new Vector3(0f, 3.2f, 0f); //let the particle manager know where to spawn a money particle
-
             RuntimeEvents.OrderFinished.Raise();
             Destroy(employee.ServedCustomer.gameObject); //remove this employee's served customer from the game
         }
-        //RuntimeEvents.NewCustomerAtCounter.Raise();
     }
 
     private void ResetEmployee()
@@ -107,6 +92,6 @@ public class EmployeeMerge : MonoBehaviour
         IsDragged = false;
         transform.position = startPosition;
         transform.rotation = startRotation;
-        animator.Play("Idle", 0, 0f);
+        animator.Play("Idle");
     }
 }

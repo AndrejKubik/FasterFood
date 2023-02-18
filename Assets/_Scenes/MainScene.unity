@@ -1220,7 +1220,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.000000011615891, y: 0.87870663, z: -0.4773622, w: -0.000000021382005}
+  m_LocalRotation: {x: -0.000000012015423, y: 0.87870663, z: -0.4773622, w: -0.000000022117447}
   m_LocalPosition: {x: -0.6, y: 9.0684185, z: 4.777011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4243,7 +4243,7 @@ MonoBehaviour:
   - {fileID: 2088609288}
   - {fileID: 207244414}
   ActiveEmployees: []
-  employeePrefab: {fileID: 6841456100805836307, guid: b8c1e3a31677f68469f3163899450655,
+  employeePrefab: {fileID: 6841456100805836307, guid: c985a65a323ef634cb46bde2d702bd33,
     type: 3}
 --- !u!114 &1341251526
 MonoBehaviour:
@@ -4588,7 +4588,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461896356}
-  m_LocalRotation: {x: -0.000000011615891, y: 0.87870663, z: -0.4773622, w: -0.000000021382005}
+  m_LocalRotation: {x: -0.000000012015423, y: 0.87870663, z: -0.4773622, w: -0.000000022117447}
   m_LocalPosition: {x: -0.6, y: 7.1, z: 3.5000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
