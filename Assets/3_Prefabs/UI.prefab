@@ -4619,8 +4619,8 @@ MonoBehaviour:
   customersUpgradeFill: {fileID: 8600411284110488687}
   prepSpeedUpgradeFill: {fileID: 852169564372649459}
   employeeCost: {fileID: 8067553286120005873}
-  serviceSpeedCost: {fileID: 2007831329223081139}
-  customerSpawnCost: {fileID: 6263179928938150166}
+  serviceSpeedCost: {fileID: 9211804362444283810}
+  customerSpawnCost: {fileID: 7237733291444119778}
   employeeButtonAnimator: {fileID: 9066182895717266174}
   serviceSpeedButtonAnimator: {fileID: 4478867404082172267}
   customerSpawnButtonAnimator: {fileID: 8230557413364975419}
