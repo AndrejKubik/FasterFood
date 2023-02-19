@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1ac27b279abd1ad4db993fba3c8b26e2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d59489f3d43bf204a9a8fcfd925dd0b4, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1ac27b279abd1ad4db993fba3c8b26e2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d59489f3d43bf204a9a8fcfd925dd0b4, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -731,12 +731,13 @@ GameObject:
   - component: {fileID: 1400391999872421504}
   - component: {fileID: 7058246592517870250}
   - component: {fileID: 6822551930688475726}
-  - component: {fileID: 2068813591907897598}
   - component: {fileID: 7495633216363049994}
+  - component: {fileID: 7871950326554689198}
   - component: {fileID: -589548076116664691}
   - component: {fileID: -1609119077018286575}
   - component: {fileID: 8475506975230262152}
   - component: {fileID: 228866323493233581}
+  - component: {fileID: 2068813591907897598}
   m_Layer: 6
   m_Name: Employee
   m_TagString: Employee
@@ -813,20 +814,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2068813591907897598
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6841456100805836307}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7495633216363049994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,22 +836,35 @@ MonoBehaviour:
   progressBarFill: {fileID: 7808182133147478723}
   progressBarBackground: {fileID: 3231458597470925150}
   CameraTarget: {fileID: 6711520471156664555}
-  level1:
-  - {fileID: 2501764754576647925}
-  - {fileID: 135791248191519015}
-  - {fileID: 1982426878061634039}
-  level2:
-  - {fileID: 6711258541991417139}
-  - {fileID: 1683314918110166794}
-  - {fileID: 3748609500704314536}
-  level3:
-  - {fileID: 8666139346977122742}
-  - {fileID: 2102366643273487295}
-  - {fileID: 2325805530237522217}
-  level4:
-  - {fileID: 514257220072250632}
-  - {fileID: 1763955356588718008}
-  - {fileID: 2325805530237522217}
+--- !u!114 &7871950326554689198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6841456100805836307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b434df201334045b2c0b6c9d383457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels:
+  - levelData: {fileID: 11400000, guid: ddfd6a946e562b34abb74c4da1aa5f2a, type: 2}
+    Hat: {fileID: 2501764754576647925}
+    Head: {fileID: 135791248191519015}
+    Body: {fileID: 1982426878061634039}
+  - levelData: {fileID: 11400000, guid: a028a6e77f6a97f4fb1a66e719e20349, type: 2}
+    Hat: {fileID: 6711258541991417139}
+    Head: {fileID: 1683314918110166794}
+    Body: {fileID: 3748609500704314536}
+  - levelData: {fileID: 11400000, guid: 426dd54874852dd4f9f4fd23382e9a2b, type: 2}
+    Hat: {fileID: 8666139346977122742}
+    Head: {fileID: 2102366643273487295}
+    Body: {fileID: 3057102361303664776}
+  - levelData: {fileID: 11400000, guid: 35a094852621e9541a95e77b226c1c02, type: 2}
+    Hat: {fileID: 514257220072250632}
+    Head: {fileID: 1763955356588718008}
+    Body: {fileID: 2325805530237522217}
 --- !u!114 &-589548076116664691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,7 +879,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsDragged: 0
   SpawnPointIndex: 0
-  nextLevelPrefab: {fileID: 0}
 --- !u!114 &-1609119077018286575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,6 +943,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &2068813591907897598
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6841456100805836307}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7332849974618700426
 GameObject:
   m_ObjectHideFlags: 0

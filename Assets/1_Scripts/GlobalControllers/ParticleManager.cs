@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class ParticleManager : MonoBehaviour
 {
-    [SerializeField] private GameObject customerDisappearParticle;
+    public static ParticleManager instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    public GameObject PoofParticle;
     public static Vector3 DisappearParticlePosition;
 
     [SerializeField] private GameObject cashEarnedParticle;
@@ -12,7 +18,7 @@ public class ParticleManager : MonoBehaviour
 
     public void SpawnCustomerDisappearParticle() //called by: OrderFinished + EmployeesMerged
     {
-        SpawnParticle(customerDisappearParticle, ref DisappearParticlePosition);
+        SpawnParticle(PoofParticle, ref DisappearParticlePosition);
     }
 
     public void SpawnCashEarnedParticle() //called by: OrderFinished

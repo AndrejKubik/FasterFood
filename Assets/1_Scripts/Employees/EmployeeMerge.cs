@@ -7,16 +7,17 @@ public class EmployeeMerge : MonoBehaviour
     private float zCoordinate;
     private Vector3 startPosition;
     private Quaternion startRotation;
+    public int SpawnPointIndex;
     public bool IsDragged;
     private Employee employee;
+    private EmployeeStats employeeStats;
     private Animator animator;
-    public int SpawnPointIndex;
-    [SerializeField] private GameObject nextLevelPrefab;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         employee = GetComponent<Employee>();
+        employeeStats = GetComponent<EmployeeStats>();
         animator.Play("Spawn", 0, 0f);
     }
 
@@ -58,25 +59,27 @@ public class EmployeeMerge : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == GameLayers.Employee)
+        if (other.gameObject.layer == GameLayers.Employee) //when the employee gets hit by another employee
         {
-            if (!IsDragged)
+            EmployeeStats otherStats = other.GetComponent<EmployeeStats>(); //store the other employee's stats for level check
+
+            if (!IsDragged && employeeStats.currentLevel == otherStats.currentLevel) //if levels of both are same and this employe is the one being hit
             {
-                ParticleManager.DisappearParticlePosition = transform.position;
-                animator.Play("Spawn", 0, 0f);
-            }
-            else if(IsDragged)
-            {
-                ForceOrderFinish();
-                //RuntimeEvents.EmployeesMerged.Raise();
-                EmployeeManager.instance.ActiveEmployees.Remove(employee); //debug part
-                EmployeeManager.SpawnPoints[SpawnPointIndex].IsOccupied = false;
-                Destroy(gameObject);
+                //get all nececssary data from the other employee
+                EmployeeMerge otherEmployeeMerge = other.GetComponent<EmployeeMerge>();
+                Employee otherEmployee = other.GetComponent<Employee>();
+
+                employeeStats.ChangeLevel(); //Level-up this employee
+                animator.Play("Spawn", 0, 0f); //play the spawn animation on this employee after leveling up
+                otherEmployeeMerge.ForceOrderFinish(); //force finish the other employees order since he will be destroyed
+                EmployeeManager.instance.ActiveEmployees.Remove(otherEmployee); //remove the other employee from active employees
+                EmployeeManager.SpawnPoints[otherEmployeeMerge.SpawnPointIndex].IsOccupied = false; //free the other employee's spawn point
+                Destroy(other.gameObject); //destroy the other employee
             }
         }
     }
 
-    private void ForceOrderFinish()
+    public void ForceOrderFinish()
     {
         if(employee.ServedCustomer != null)
         {
@@ -92,6 +95,6 @@ public class EmployeeMerge : MonoBehaviour
         IsDragged = false;
         transform.position = startPosition;
         transform.rotation = startRotation;
-        animator.Play("Idle");
+        animator.Play("Spawn", 0, 0f);
     }
 }

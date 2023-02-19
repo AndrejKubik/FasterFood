@@ -76,7 +76,7 @@ public class UIController : MonoBehaviour
                 SpendMoney(Settings.ShopSettings.BaseCustomerPrice, RuntimeEvents.CustomerBaited);
                 RuntimeEvents.UpgradeBought.Raise(); //play the button sound
             }
-            else if (CustomerSpawning.EntranceOccupied) Debug.Log("Wait up!");
+            //else if (CustomerSpawning.EntranceOccupied) Debug.Log("Wait up!");
         } 
         else Debug.Log("Max Customers in line!");
     }

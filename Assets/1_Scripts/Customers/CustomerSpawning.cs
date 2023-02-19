@@ -42,7 +42,6 @@ public class CustomerSpawning : MonoBehaviour
         modelsParent.GetChild(randomIndex).gameObject.SetActive(true); //show the chosen customer model
 
         CustomerManager.WaitingCustomers.Add(newCustomer.transform); //add the fresh customer to the list of all customers in line for an order
-        //Debug.Log("Awaiting customers: " + CustomerManager.WaitingCustomers.Count);
 
         EntranceOccupied = true;
     }

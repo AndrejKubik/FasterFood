@@ -31,6 +31,7 @@ public class Employee : MonoBehaviour
     {
         if (customerBeingServed && ServedCustomer != null)
         {
+            animator.SetTrigger("OrderStarted");
             progressBarFill.fillAmount = Mathf.MoveTowards(progressBarFill.fillAmount, 1f, Time.deltaTime * 1f / prepTime); //fill the progress to the end gradually to full while the order finishes
             
             if(!employeeMerge.IsDragged)
@@ -52,30 +53,35 @@ public class Employee : MonoBehaviour
     {
         if(CustomerManager.WaitingCustomers.Count > 0)
         {
-            animator.SetTrigger("OrderStarted");
+            //animator.SetTrigger("OrderStarted");
             CustomerManager.WaitingCustomers.RemoveAt(0);
             prepTime = GameManager.OrderPrepTime;
-            progressBarFill.sprite = progressBarSprites[GameManager.CurrentDishRecipe];
-            progressBarBackground.sprite = progressBarSprites[GameManager.CurrentDishRecipe];
+            //progressBarFill.sprite = progressBarSprites[GameManager.CurrentDishRecipe];
+            //progressBarBackground.sprite = progressBarSprites[GameManager.CurrentDishRecipe];
             progressBar.SetActive(true); //show the preparation progress bar above the employee
             customerBeingServed = true;
 
             yield return new WaitForSeconds(prepTime);
 
-            if (ServedCustomer != null)
-            {
-                ParticleManager.DisappearParticlePosition = ServedCustomer.position; //let the particle manager know where to spawn a poof particle
-                ParticleManager.CashEarnedParticlePosition = transform.position + new Vector3(0f, 3.2f, 0f); //let the particle manager know where to spawn a money particle
-                Destroy(ServedCustomer.gameObject); //remove the completely served customer from the game
-            }
-
-            ServedCustomer = null;
-            customerBeingServed = false;
-            progressBarFill.fillAmount = 0f; //reset the employee's progress bar
-            progressBar.SetActive(false); //hide the preparation progress bar above the employee
-            animator.SetTrigger("OrderFinished");
-            RuntimeEvents.NewCustomerAtCounter.Raise();
-            RuntimeEvents.OrderFinished.Raise();
+            FinishOrder();
         }
+    }
+
+    public void FinishOrder()
+    {
+        if (ServedCustomer != null)
+        {
+            ParticleManager.DisappearParticlePosition = ServedCustomer.position; //let the particle manager know where to spawn a poof particle
+            ParticleManager.CashEarnedParticlePosition = transform.position + new Vector3(0f, 3.2f, 0f); //let the particle manager know where to spawn a money particle
+            Destroy(ServedCustomer.gameObject); //remove the completely served customer from the game
+        }
+
+        ServedCustomer = null;
+        customerBeingServed = false;
+        progressBarFill.fillAmount = 0f; //reset the employee's progress bar
+        progressBar.SetActive(false); //hide the preparation progress bar above the employee
+        animator.SetTrigger("OrderFinished");
+        RuntimeEvents.NewCustomerAtCounter.Raise();
+        RuntimeEvents.OrderFinished.Raise();
     }
 }
