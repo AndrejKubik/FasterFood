@@ -20,11 +20,13 @@ public class Employee : MonoBehaviour
     public Transform CameraTarget;
 
     private EmployeeMerge employeeMerge;
+    private EmployeeStats employeeStats;
 
     private void OnEnable()
     {
         animator = GetComponent<Animator>();
         employeeMerge = GetComponent<EmployeeMerge>();
+        employeeStats = GetComponent<EmployeeStats>();
     }
 
     private void Update()
@@ -82,6 +84,7 @@ public class Employee : MonoBehaviour
         progressBar.SetActive(false); //hide the preparation progress bar above the employee
         animator.SetTrigger("OrderFinished");
         RuntimeEvents.NewCustomerAtCounter.Raise();
+        GameManager.DishRecipeMultiplier = employeeStats.CurrentLevel.levelData.RecipeCost;
         RuntimeEvents.OrderFinished.Raise();
     }
 }

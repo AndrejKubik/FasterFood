@@ -14,19 +14,30 @@ public class EmployeeStats : MonoBehaviour
         public GameObject Body;
     }
 
-    [SerializeField] private List<Level> levels;
-    public int currentLevel = 1;
+    public List<Level> levels;
+    public int CurrentLevelNumber = 0;
+    public Level CurrentLevel;
+
+    private void Start()
+    {
+        CurrentLevel = levels[CurrentLevelNumber];
+
+        CurrentLevel.Hat.SetActive(true);
+        CurrentLevel.Head.SetActive(true);
+        CurrentLevel.Body.SetActive(true);
+    }
 
     public void ChangeLevel()
     {
-        levels[currentLevel].Hat.SetActive(false);
-        levels[currentLevel].Head.SetActive(false);
-        levels[currentLevel].Body.SetActive(false);
+        CurrentLevel.Hat.SetActive(false);
+        CurrentLevel.Head.SetActive(false);
+        CurrentLevel.Body.SetActive(false);
 
-        currentLevel++;
+        CurrentLevelNumber++;
+        CurrentLevel = levels[CurrentLevelNumber];
 
-        levels[currentLevel].Hat.SetActive(true);
-        levels[currentLevel].Head.SetActive(true);
-        levels[currentLevel].Body.SetActive(true);
+        CurrentLevel.Hat.SetActive(true);
+        CurrentLevel.Head.SetActive(true);
+        CurrentLevel.Body.SetActive(true);
     }
 }

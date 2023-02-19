@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Level 2
   m_EditorClassIdentifier: 
   RecipePrepTime: 3
-  RecipeCost: 8
+  RecipeCost: 2

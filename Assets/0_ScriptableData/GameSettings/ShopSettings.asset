@@ -31,6 +31,6 @@ MonoBehaviour:
   DishCostIncrease: 60
   PrepTimeReduceAmmount: 1
   SpawnCooldownReduceAmmount: 1
-  BaseMoneyUpdateSpeed: 100
+  BaseMoneyUpdateSpeed: 300
   MoneyUpdateSpeedIncrease: 20
   ButtonFillSpeed: 3

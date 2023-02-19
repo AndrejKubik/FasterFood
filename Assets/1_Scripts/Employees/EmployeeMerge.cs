@@ -11,6 +11,7 @@ public class EmployeeMerge : MonoBehaviour
     public bool IsDragged;
     private Employee employee;
     private EmployeeStats employeeStats;
+    private int maxLevel;
     private Animator animator;
 
     private void Start()
@@ -18,35 +19,30 @@ public class EmployeeMerge : MonoBehaviour
         animator = GetComponent<Animator>();
         employee = GetComponent<Employee>();
         employeeStats = GetComponent<EmployeeStats>();
+        maxLevel = employeeStats.levels.Count - 1;
         animator.Play("Spawn", 0, 0f);
-    }
-
-    private void OnEnable()
-    {
-        if (animator != null)
-        {
-            animator.Play("Spawn", 0, 0f);
-        }
-
         startPosition = transform.position;
         startRotation = transform.rotation;
     }
 
     private void OnMouseDown()
     {
-        zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
-        GetComponent<Animator>().Play("DragWiggle", 0, 0f);
-        IsDragged = true;
+        if(employeeStats.CurrentLevelNumber < maxLevel)
+        {
+            zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
+            GetComponent<Animator>().Play("DragWiggle", 0, 0f);
+            IsDragged = true;
+        }
     }
 
     private void OnMouseDrag()
     {
-        transform.position = new Vector3(MouseWorldPosition().x, MouseWorldPosition().y, transform.position.z);
+        if (employeeStats.CurrentLevelNumber < maxLevel) transform.position = new Vector3(MouseWorldPosition().x, MouseWorldPosition().y, transform.position.z);
     }
 
     private void OnMouseUp()
     {
-        ResetEmployee();
+        if (employeeStats.CurrentLevelNumber < maxLevel) ResetEmployee();
     }
 
     private Vector3 MouseWorldPosition()
@@ -62,14 +58,15 @@ public class EmployeeMerge : MonoBehaviour
         if (other.gameObject.layer == GameLayers.Employee) //when the employee gets hit by another employee
         {
             EmployeeStats otherStats = other.GetComponent<EmployeeStats>(); //store the other employee's stats for level check
-
-            if (!IsDragged && employeeStats.currentLevel == otherStats.currentLevel) //if levels of both are same and this employe is the one being hit
+            
+            if (!IsDragged && employeeStats.CurrentLevelNumber == otherStats.CurrentLevelNumber) //if levels of both are same and this employe is the one being hit
             {
                 //get all nececssary data from the other employee
                 EmployeeMerge otherEmployeeMerge = other.GetComponent<EmployeeMerge>();
                 Employee otherEmployee = other.GetComponent<Employee>();
                 Instantiate(ParticleManager.instance.PoofParticle, transform.position, transform.rotation);
                 employeeStats.ChangeLevel(); //Level-up this employee
+                if (employeeStats.CurrentLevelNumber > EnvironmentController.KitchenLevel) RuntimeEvents.NewLevelAppeared.Raise();
                 animator.Play("Spawn", 0, 0f); //play the spawn animation on this employee after leveling up
                 otherEmployeeMerge.ForceOrderFinish(); //force finish the other employees order since he will be destroyed
                 EmployeeManager.instance.ActiveEmployees.Remove(otherEmployee); //remove the other employee from active employees

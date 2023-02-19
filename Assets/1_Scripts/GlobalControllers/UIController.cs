@@ -16,29 +16,22 @@ public class UIController : MonoBehaviour
 
     [Header("UPGRADE PROGRESS BARS: ")]
     [SerializeField] private Image customersUpgradeFill;
-    [SerializeField] private Image dishUpgradeFill;
     [SerializeField] private Image prepSpeedUpgradeFill;
 
     [Header("UPGRADE COST TEXTS: ")]
     [SerializeField] private TextMeshProUGUI employeeCost;
-    [SerializeField] private TextMeshProUGUI newRecipeCost;
     [SerializeField] private TextMeshProUGUI serviceSpeedCost;
     [SerializeField] private TextMeshProUGUI customerSpawnCost;
 
     [Header("UPGRADE BUTTON ANIMATORS: ")]
     [SerializeField] private Animator employeeButtonAnimator;
-    [SerializeField] private Animator newRecipeButtonAnimator;
     [SerializeField] private Animator serviceSpeedButtonAnimator;
     [SerializeField] private Animator customerSpawnButtonAnimator;
 
     [Header("UPGRADE BUTTON BLOCKERS: ")]
     [SerializeField] private GameObject employeeButtonBlock;
-    [SerializeField] private GameObject newRecipeButtonBlock;
     [SerializeField] private GameObject serviceSpeedButtonBlock;
     [SerializeField] private GameObject customerSpawnButtonBlock;
-
-    [Header("RECIPE UPGRADE SPRITES: ")]
-    [SerializeField] private List<GameObject> recipeSprites;
 
     private void Start()
     {
@@ -94,13 +87,6 @@ public class UIController : MonoBehaviour
         PlayButtonAnimation(employeeButtonAnimator);
     }
 
-    public void UpgradeDishRecipe() //called by a button
-    {
-        SpendMoney(GameManager.CurrentRecipePrice, RuntimeEvents.DishRecipeUpgraded); //if the another level is available for this upgrade, buy it
-        UpdateCostText(newRecipeCost, GameManager.CurrentRecipePrice);
-        PlayButtonAnimation(newRecipeButtonAnimator);
-    }
-
     public void UpgradeServiceSpeed() //called by a button
     {
         SpendMoney(GameManager.CurrentServiceSpeedPrice, RuntimeEvents.ServiceSpeedUpgraded); //if the another level is available for this upgrade, buy it
@@ -123,25 +109,6 @@ public class UIController : MonoBehaviour
     public void BlockServiceSpeedUpgrade() //called by: MaxServiceSpeedReached
     {
         serviceSpeedButtonBlock.SetActive(true); //cover the service speed upgrade button
-    }
-
-    public void UnblockServiceSpeedUpgrade() //called by: RecipeChanged
-    {
-        serviceSpeedButtonBlock.SetActive(false); //uncover the service speed upgrade button
-    }
-
-    public void ChangeRecipeSprite() //called by: RecipeChanged
-    {
-        for(int i = 0; i < recipeSprites.Count; i++)
-        {
-            if (i == GameManager.CurrentDishRecipe) recipeSprites[i].SetActive(true);
-            else if(i != GameManager.CurrentDishRecipe) recipeSprites[i].SetActive(false);
-        }
-    }
-
-    public void BlockRecipeUpgrade() //called by: MaxRecipeReached
-    {
-        newRecipeButtonBlock.SetActive(true);
     }
 
     public void BlockCustomerSpawnUpgrade() //called by: MaxCustomerSpawnReached
@@ -174,7 +141,6 @@ public class UIController : MonoBehaviour
     private void UpdateAllCosts()
     {
         UpdateCostText(employeeCost, GameManager.CurrentEmployeePrice);
-        UpdateCostText(newRecipeCost, GameManager.CurrentRecipePrice);
         UpdateCostText(serviceSpeedCost, GameManager.CurrentServiceSpeedPrice);
         UpdateCostText(customerSpawnCost, GameManager.CurrentCustomerSpawnPrice);
     }
@@ -193,7 +159,6 @@ public class UIController : MonoBehaviour
     private void UpdateButtonFills()
     {
         customersUpgradeFill.fillAmount = Mathf.MoveTowards(customersUpgradeFill.fillAmount, (float)GameManager.CurrentCustomerSpawnSegments / (Settings.ShopSettings.CustomerSpawnSegments + 1), Time.deltaTime * Settings.ShopSettings.ButtonFillSpeed);
-        dishUpgradeFill.fillAmount = Mathf.MoveTowards(dishUpgradeFill.fillAmount, (float)GameManager.CurrentRecipeSegments / (Settings.ShopSettings.NewRecipeSegments + 1), Time.deltaTime * Settings.ShopSettings.ButtonFillSpeed);
         prepSpeedUpgradeFill.fillAmount = Mathf.MoveTowards(prepSpeedUpgradeFill.fillAmount, (float)GameManager.CurrentServiceSpeedSegments / (Settings.ShopSettings.ServiceSpeedSegments + 1), Time.deltaTime * Settings.ShopSettings.ButtonFillSpeed);
     }
 }

@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public static float MoneyTextUpdateSpeed;
 
     public static float DishRecipeMultiplier;
-    public static int CurrentDishRecipe;
 
     public static float OrderPrepTime;
     public static float OrderPrepTimeReduceAmmount;
@@ -31,7 +30,6 @@ public class GameManager : MonoBehaviour
     {
         MoneyGain = Settings.ShopSettings.BaseMoneyGain;
         DishRecipeMultiplier = 1f;
-        CurrentDishRecipe = 0;
 
         MoneyTextUpdateSpeed = Settings.ShopSettings.BaseMoneyUpdateSpeed;
 
@@ -73,12 +71,6 @@ public class GameManager : MonoBehaviour
         IncreasePrice(ref CurrentCustomerSpawnPrice, Settings.ShopSettings.CustomerSpawnPriceMultiplier);
     }
 
-    public void UpgradeDishRecipe() //called by: DishRecipeUpgraded
-    {
-        BuyUpgrade("ChangeDishRecipe", ref CurrentRecipeSegments, Settings.ShopSettings.NewRecipeSegments);
-        IncreasePrice(ref CurrentRecipePrice, Settings.ShopSettings.RecipePriceMultiplier);
-    }
-
     private void ReduceOrderPrepTime() //called by: UpgradePrepTime()
     {
         OrderPrepTime -= OrderPrepTimeReduceAmmount; //reduce the time required to prepare an order
@@ -103,32 +95,6 @@ public class GameManager : MonoBehaviour
         {
             RuntimeEvents.MaxCustomerSpawnReached.Raise(); //block further upgrades
         }
-    }
-
-    private void ChangeDishRecipe() //called by: UpgradeDishRecipe()
-    {
-        MoneyTextUpdateSpeed += Settings.ShopSettings.MoneyUpdateSpeedIncrease; //increase the money number update speed
-        DishRecipeMultiplier += Settings.ShopSettings.DishCostIncrease; //increase the money gain
-
-        OrderPrepTime += Settings.ShopSettings.NewDishPrepTimeIncrease; //increase the dish prep time due to more "complex" meal
-
-        CurrentDishRecipe++; //increment the current dish recipe index
-
-        if (CurrentDishRecipe == 1) kitchenAnimator.Play("ChangeToHotdog");
-        else if (CurrentDishRecipe == 2) kitchenAnimator.Play("ChangeToPizza");
-
-        Debug.Log("New dish is being served");
-
-        //change the appearance of the dish being served
-
-        int nextRecipe = CurrentDishRecipe + 1; //check what is the next dish recipe
-
-        if (nextRecipe > Settings.ShopSettings.MaxDishRecipes) //if there is no more recipes to buy
-        {
-            RuntimeEvents.MaxRecipeReached.Raise(); //show button blocker
-        }
-
-        RuntimeEvents.RecipeChanged.Raise(); //allow the player to further reduce prep time
     }
 
     private void BuyUpgrade(string method, ref int boughtSegments, int numberOfSegments)

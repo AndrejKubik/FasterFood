@@ -22,8 +22,8 @@ public class RuntimeEvents : MonoBehaviour
     [SerializeField] private GameEvent orderFinished;
     public static GameEvent OrderFinished;
 
-    [SerializeField] private GameEvent dishRecipeUpgraded;
-    public static GameEvent DishRecipeUpgraded;
+    [SerializeField] private GameEvent newLevelAppeared;
+    public static GameEvent NewLevelAppeared;
 
     [SerializeField] private GameEvent serviceSpeedUpgraded;
     public static GameEvent ServiceSpeedUpgraded;
@@ -31,23 +31,15 @@ public class RuntimeEvents : MonoBehaviour
     [SerializeField] private GameEvent customerSpawnSpeedUpgraded;
     public static GameEvent CustomerSpawnSpeedUpgraded;
 
-    [SerializeField] private GameEvent recipeChanged;
-    public static GameEvent RecipeChanged;
-
-    [Header("MAX UPGRADE EVENTS: ")]
     [SerializeField] private GameEvent maxCustomerSpawnReached;
     public static GameEvent MaxCustomerSpawnReached;
 
     [SerializeField] private GameEvent maxEmployeesReached;
     public static GameEvent MaxEmployeesReached;
 
-    [SerializeField] private GameEvent maxRecipeReached;
-    public static GameEvent MaxRecipeReached;
-
     [SerializeField] private GameEvent maxServiceSpeedReached;
     public static GameEvent MaxServiceSpeedReached;
 
-    [Header("MAX UPGRADE EVENTS: ")]
     [SerializeField] private GameEvent notEnoughMoney;
     public static GameEvent NotEnoughMoney;
 
@@ -62,15 +54,13 @@ public class RuntimeEvents : MonoBehaviour
         EmployeeHired = employeeHired;
         EmployeesMerged = employeesMerged;
         OrderFinished = orderFinished;
-        DishRecipeUpgraded = dishRecipeUpgraded;
+        NewLevelAppeared = newLevelAppeared;
         ServiceSpeedUpgraded = serviceSpeedUpgraded;
         CustomerSpawnSpeedUpgraded = customerSpawnSpeedUpgraded;
 
         MaxCustomerSpawnReached = maxCustomerSpawnReached;
         MaxEmployeesReached = maxEmployeesReached;
-        MaxRecipeReached = maxRecipeReached;
         MaxServiceSpeedReached = maxServiceSpeedReached;
-        RecipeChanged = recipeChanged;
 
         NotEnoughMoney = notEnoughMoney;
         UpgradeBought = upgradeBought;
