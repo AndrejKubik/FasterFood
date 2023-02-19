@@ -12,7 +12,7 @@ public class EmployeeManager : MonoBehaviour
     }
 
     [SerializeField] private Transform employeesParent;
-    [SerializeField] private List<Transform> spawnPositions = new List<Transform>();
+    public List<Transform> SpawnPositions = new List<Transform>();
     public static List<SpawnPoint> SpawnPoints = new List<SpawnPoint>();
     //public static List<Employee> ActiveEmployees = new List<Employee>();
 
@@ -73,9 +73,14 @@ public class EmployeeManager : MonoBehaviour
 
     private void LoadAllSpawnPoints()
     {
-        for (int i = 0; i < spawnPositions.Count; i++)
+        for (int i = 0; i < employeesParent.childCount; i++)
         {
-            SpawnPoints.Add(new SpawnPoint(spawnPositions[i].position, spawnPositions[i].rotation, i, false));
+            SpawnPositions.Add(employeesParent.GetChild(i));
+        }
+
+        for (int i = 0; i < SpawnPositions.Count; i++)
+        {
+            SpawnPoints.Add(new SpawnPoint(SpawnPositions[i].position, SpawnPositions[i].rotation, i, false));
         }
     }
 

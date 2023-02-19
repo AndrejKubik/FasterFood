@@ -5,13 +5,67 @@ using Cinemachine;
 
 public class CameraControl : MonoBehaviour
 {
-    public CinemachineTargetGroup targetGroup;
+    [SerializeField] private List<CinemachineVirtualCamera> cameras;
 
-    [SerializeField] private CinemachineVirtualCamera camera2;
-
-    public void SwitchCamera() //called by a button in pause menu
+    private void Update()
     {
-        if(camera2.Priority == 0) camera2.Priority = 1;
-        else if(camera2.Priority == 1) camera2.Priority = 0;
+        if(EmployeeManager.SpawnPoints[10].IsOccupied || EmployeeManager.SpawnPoints[9].IsOccupied)
+        {
+            cameras[0].Priority = 0;
+            cameras[1].Priority = 0;
+            cameras[2].Priority = 0;
+            cameras[3].Priority = 1;
+        }
+        else if (EmployeeManager.SpawnPoints[8].IsOccupied || EmployeeManager.SpawnPoints[7].IsOccupied)
+        {
+            cameras[0].Priority = 0;
+            cameras[1].Priority = 0;
+            cameras[2].Priority = 1;
+            cameras[3].Priority = 0;
+        }
+        else if (EmployeeManager.SpawnPoints[6].IsOccupied || EmployeeManager.SpawnPoints[5].IsOccupied)
+        {
+            cameras[0].Priority = 0;
+            cameras[1].Priority = 1;
+            cameras[2].Priority = 0;
+            cameras[3].Priority = 0;
+        }
+        else
+        {
+            cameras[0].Priority = 1;
+            cameras[1].Priority = 0;
+            cameras[2].Priority = 0;
+            cameras[3].Priority = 0;
+        }
+
+
+        //    if (EmployeeManager.instance.ActiveEmployees.Count <= 5)
+        //{
+        //    cameras[0].Priority = 1;
+        //    cameras[1].Priority = 0;
+        //    cameras[2].Priority = 0;
+        //    cameras[3].Priority = 0;
+        //}
+        //else if(EmployeeManager.instance.ActiveEmployees.Count > 5 && EmployeeManager.instance.ActiveEmployees.Count <= 7)
+        //{
+        //    cameras[0].Priority = 0;
+        //    cameras[1].Priority = 1;
+        //    cameras[2].Priority = 0;
+        //    cameras[3].Priority = 0;
+        //}
+        //else if (EmployeeManager.instance.ActiveEmployees.Count > 7 && EmployeeManager.instance.ActiveEmployees.Count <= 9)
+        //{
+        //    cameras[0].Priority = 0;
+        //    cameras[1].Priority = 0;
+        //    cameras[2].Priority = 1;
+        //    cameras[3].Priority = 0;
+        //}
+        //else if (EmployeeManager.instance.ActiveEmployees.Count > 9 && EmployeeManager.instance.ActiveEmployees.Count <= 11)
+        //{
+        //    cameras[0].Priority = 0;
+        //    cameras[1].Priority = 0;
+        //    cameras[2].Priority = 0;
+        //    cameras[3].Priority = 1;
+        //}
     }
 }
