@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 0.75, y: 0.28125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7335774919573295877
 CanvasRenderer:
@@ -59,14 +59,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d59489f3d43bf204a9a8fcfd925dd0b4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 388edd0df5da3064795cd7244928d572, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -91,7 +91,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &846280392768496837
 Transform:
   m_ObjectHideFlags: 0
@@ -410,7 +410,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 0.7125, y: 0.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5845337454560885563
 CanvasRenderer:
@@ -433,19 +433,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.374466, g: 0.8018868, b: 0.41317117, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d59489f3d43bf204a9a8fcfd925dd0b4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6534651cf0c667f498fcaae561548e4f, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 0.321
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -865,6 +865,12 @@ MonoBehaviour:
     Hat: {fileID: 514257220072250632}
     Head: {fileID: 1763955356588718008}
     Body: {fileID: 2325805530237522217}
+  CurrentLevelNumber: 0
+  CurrentLevel:
+    levelData: {fileID: 0}
+    Hat: {fileID: 0}
+    Head: {fileID: 0}
+    Body: {fileID: 0}
 --- !u!114 &-589548076116664691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -877,8 +883,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24b92881e27b9845aa990daa803c15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDragged: 0
   SpawnPointIndex: 0
+  IsDragged: 0
 --- !u!114 &-1609119077018286575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,7 +1179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6968196297200764036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1223,7 +1229,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8434140599980929308}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0, z: 0.938}
+  m_LocalPosition: {x: 0, y: 0, z: 0.573}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1233,7 +1239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.875}
+  m_AnchoredPosition: {x: 0, y: 1.664}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4861479569609306186
@@ -1413,7 +1419,7 @@ PrefabInstance:
     - target: {fileID: 178582602288810172, guid: 8c531ab65500476429ac35d1f91ea6c5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 662490126861799942, guid: 8c531ab65500476429ac35d1f91ea6c5,
         type: 3}
@@ -1690,7 +1696,7 @@ PrefabInstance:
     - target: {fileID: 5378453236167345367, guid: f2bb0280a97728e4e8e3c83e08593e65,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 741351664825804373, guid: f2bb0280a97728e4e8e3c83e08593e65, type: 3}

@@ -25,7 +25,7 @@ public class ShopSettings : ScriptableObject
     public int CustomerSpawnSegments = 4;
 
     [Space(10f), Header("MONEY CONTROL: ")] 
-    public float BaseMoneyGain = 5f;
+    public int BaseMoneyGain = 5;
 
     [Space(10f), Header("RECIPE UPGRADE CONTROL: ")]
 
@@ -40,7 +40,6 @@ public class ShopSettings : ScriptableObject
     public float SpawnCooldownReduceAmmount = 0.1f;
 
     [Space(10f), Header("UI CONTROL: ")] 
-    public float BaseMoneyUpdateSpeed = 10f;
-    public float MoneyUpdateSpeedIncrease = 3f;
+    public int BaseMoneyUpdateSpeed = 10;
     public float ButtonFillSpeed = 5f;
 }

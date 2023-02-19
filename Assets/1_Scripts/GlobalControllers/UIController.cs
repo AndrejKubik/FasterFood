@@ -134,8 +134,14 @@ public class UIController : MonoBehaviour
 
     private void UpdateMoneyCount()
     {
-        currentMoneyUI = Mathf.Round(Mathf.MoveTowards(currentMoneyUI, GameManager.MoneyTotal, Time.deltaTime * GameManager.MoneyTextUpdateSpeed) * 100f) * 0.01f;
-        moneyCount.text = Mathf.RoundToInt(currentMoneyUI).ToString();
+        currentMoneyUI = Mathf.MoveTowards(currentMoneyUI, GameManager.MoneyTotal, 300f * Time.deltaTime);
+        moneyCount.text = ShortNotation(Mathf.RoundToInt(currentMoneyUI));
+    }
+
+    private string ShortNotation(int number)
+    {
+        if (number >= 1000) return (number / 1000D).ToString("F1") + "K";
+        return number.ToString();
     }
 
     private void UpdateAllCosts()
@@ -147,7 +153,7 @@ public class UIController : MonoBehaviour
 
     private void UpdateCostText(TextMeshProUGUI price, float newPrice)
     {
-        price.text = newPrice.ToString();
+        price.text = ShortNotation(Mathf.RoundToInt(newPrice)); 
     }
 
     private void PlayButtonAnimation(Animator animator)

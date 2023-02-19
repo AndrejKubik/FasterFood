@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static float MoneyTotal;
-    public static float MoneyGain;
-    public static float MoneyTextUpdateSpeed;
+    public static int MoneyGain;
+    public static int MoneyTextUpdateSpeed;
 
     public static float DishRecipeMultiplier;
 
