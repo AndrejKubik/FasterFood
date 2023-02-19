@@ -1220,7 +1220,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.000000012015423, y: 0.87870663, z: -0.4773622, w: -0.000000022117447}
+  m_LocalRotation: {x: 0.000000011615893, y: 0.87870663, z: -0.4773622, w: 0.000000021382007}
   m_LocalPosition: {x: -0.6, y: 9.0684185, z: 4.777011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3841,8 +3841,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1255614191}
   - component: {fileID: 1255614193}
-  - component: {fileID: 1255614192}
-  - component: {fileID: 1255614194}
   m_Layer: 0
   m_Name: ParticleManager
   m_TagString: Untagged
@@ -3865,46 +3863,6 @@ Transform:
   m_Father: {fileID: 556213244}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1255614192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255614190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d8d8eac627d04438196a20b37a498e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 2a9c2c7d19b50704d90cf32c49a2ed8d, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1255614193}
-        m_TargetAssemblyTypeName: ParticleManager, Assembly-CSharp
-        m_MethodName: SpawnCustomerDisappearParticle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1255614193}
-        m_TargetAssemblyTypeName: ParticleManager, Assembly-CSharp
-        m_MethodName: SpawnCashEarnedParticle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1255614193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3917,38 +3875,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55fce917772372a42b34e4a78ad62826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customerDisappearParticle: {fileID: 3369169343633880936, guid: b4f9ff0c12dadd64eb346a5db6f8617f,
+  PoofParticle: {fileID: 3369169343633880936, guid: b4f9ff0c12dadd64eb346a5db6f8617f,
     type: 3}
-  cashEarnedParticle: {fileID: 8902436903357692258, guid: cefb8628281d4e741b73d62f7314f1c9,
+  CashEarnedParticle: {fileID: 8902436903357692258, guid: cefb8628281d4e741b73d62f7314f1c9,
     type: 3}
---- !u!114 &1255614194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255614190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d8d8eac627d04438196a20b37a498e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 098a3e0ca64118241965195ac2e21b83, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1255614193}
-        m_TargetAssemblyTypeName: ParticleManager, Assembly-CSharp
-        m_MethodName: SpawnCustomerDisappearParticle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!4 &1260791628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1400391999872421504, guid: c985a65a323ef634cb46bde2d702bd33,
@@ -4588,7 +4518,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461896356}
-  m_LocalRotation: {x: -0.000000012015423, y: 0.87870663, z: -0.4773622, w: -0.000000022117447}
+  m_LocalRotation: {x: 0.000000011615893, y: 0.87870663, z: -0.4773622, w: 0.000000021382007}
   m_LocalPosition: {x: -0.6, y: 7.1, z: 3.5000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

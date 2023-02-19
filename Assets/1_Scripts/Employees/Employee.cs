@@ -71,8 +71,8 @@ public class Employee : MonoBehaviour
     {
         if (ServedCustomer != null)
         {
-            ParticleManager.DisappearParticlePosition = ServedCustomer.position; //let the particle manager know where to spawn a poof particle
-            ParticleManager.CashEarnedParticlePosition = transform.position + new Vector3(0f, 3.2f, 0f); //let the particle manager know where to spawn a money particle
+            Instantiate(ParticleManager.instance.PoofParticle, ServedCustomer.position, transform.rotation);
+            Instantiate(ParticleManager.instance.CashEarnedParticle, transform.position + new Vector3(0f, 3.2f, 0f), transform.rotation);
             Destroy(ServedCustomer.gameObject); //remove the completely served customer from the game
         }
 

@@ -68,7 +68,7 @@ public class EmployeeMerge : MonoBehaviour
                 //get all nececssary data from the other employee
                 EmployeeMerge otherEmployeeMerge = other.GetComponent<EmployeeMerge>();
                 Employee otherEmployee = other.GetComponent<Employee>();
-
+                Instantiate(ParticleManager.instance.PoofParticle, transform.position, transform.rotation);
                 employeeStats.ChangeLevel(); //Level-up this employee
                 animator.Play("Spawn", 0, 0f); //play the spawn animation on this employee after leveling up
                 otherEmployeeMerge.ForceOrderFinish(); //force finish the other employees order since he will be destroyed
@@ -83,8 +83,8 @@ public class EmployeeMerge : MonoBehaviour
     {
         if(employee.ServedCustomer != null)
         {
-            ParticleManager.DisappearParticlePosition = employee.ServedCustomer.position; //let the particle manager know where to spawn a poof particle
-            ParticleManager.CashEarnedParticlePosition = startPosition + new Vector3(0f, 3.2f, 0f); //let the particle manager know where to spawn a money particle
+            Instantiate(ParticleManager.instance.PoofParticle, employee.ServedCustomer.position, transform.rotation);
+            Instantiate(ParticleManager.instance.CashEarnedParticle, startPosition + new Vector3(0f, 3.2f, 0f), transform.rotation);
             RuntimeEvents.OrderFinished.Raise();
             Destroy(employee.ServedCustomer.gameObject); //remove this employee's served customer from the game
         }
