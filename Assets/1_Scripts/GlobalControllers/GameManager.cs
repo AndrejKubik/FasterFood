@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
 
     private void IncreasePrice(ref float price, float priceIncrease)
     {
-        float rawPrice = price + price * priceIncrease * 0.5f;
+        float rawPrice = price * priceIncrease;
         price = Mathf.RoundToInt(rawPrice);
     }
 }

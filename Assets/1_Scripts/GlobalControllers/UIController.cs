@@ -137,13 +137,14 @@ public class UIController : MonoBehaviour
 
     private void UpdateMoneyCount()
     {
-        currentMoneyUI = Mathf.MoveTowards(currentMoneyUI, GameManager.MoneyTotal, 300f * Time.deltaTime);
+        currentMoneyUI = Mathf.MoveTowards(currentMoneyUI, GameManager.MoneyTotal, Settings.ShopSettings.BaseMoneyUpdateSpeed * Time.deltaTime);
         moneyCount.text = ShortNotation(Mathf.RoundToInt(currentMoneyUI));
     }
 
     private string ShortNotation(int number)
     {
-        if (number >= 1000) return (number / 1000D).ToString("F1") + "K";
+        if (number >= 1000 && number < 1000000) return (number / 1000D).ToString("F2") + "K";
+        else if(number >= 1000000) return (number / 1000000D).ToString("F2") + "M";
         return number.ToString();
     }
 

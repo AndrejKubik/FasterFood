@@ -18,7 +18,7 @@ MonoBehaviour:
   BaseServiceSpeedCost: 20
   BaseCustomerSpawnSpeedCost: 10
   CustomerPriceMultiplier: 1
-  EmployeePriceMultiplier: 2
+  EmployeePriceMultiplier: 1.15
   RecipePriceMultiplier: 1.1
   ServiceSpeedPriceMultiplier: 1.3
   CustomerSpawnPriceMultiplier: 1.3
@@ -31,5 +31,5 @@ MonoBehaviour:
   DishCostIncrease: 60
   PrepTimeReduceAmmount: 1
   SpawnCooldownReduceAmmount: 1.25
-  BaseMoneyUpdateSpeed: 600
+  BaseMoneyUpdateSpeed: 10000
   ButtonFillSpeed: 3
