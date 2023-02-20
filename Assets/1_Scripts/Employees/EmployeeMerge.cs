@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EmployeeMerge : MonoBehaviour
 {
-    private float zCoordinate;
     private Vector3 startPosition;
     private Quaternion startRotation;
+    public float heightOffset;
     public int SpawnPointIndex;
     public bool IsDragged;
     private Employee employee;
@@ -29,15 +29,14 @@ public class EmployeeMerge : MonoBehaviour
     {
         if(employeeStats.CurrentLevelNumber < maxLevel)
         {
-            zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
             GetComponent<Animator>().Play("DragWiggle", 0, 0f);
             IsDragged = true;
         }
     }
 
-    private void OnMouseDrag()
+    private void OnMouseDrag() //OG
     {
-        if (employeeStats.CurrentLevelNumber < maxLevel) transform.position = new Vector3(MouseWorldPosition().x, MouseWorldPosition().y, transform.position.z);
+        if (employeeStats.CurrentLevelNumber < maxLevel) transform.position = new Vector3(MouseWorldPosition().x, MouseWorldPosition().y - heightOffset, transform.position.z);
     }
 
     private void OnMouseUp()
@@ -48,7 +47,7 @@ public class EmployeeMerge : MonoBehaviour
     private Vector3 MouseWorldPosition()
     {
         Vector3 rawMousePosition = Input.mousePosition;
-        rawMousePosition.z = zCoordinate;
+        rawMousePosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
 
         return Camera.main.ScreenToWorldPoint(rawMousePosition);
     }

@@ -883,6 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24b92881e27b9845aa990daa803c15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heightOffset: 0.45
   SpawnPointIndex: 0
   IsDragged: 0
 --- !u!114 &-1609119077018286575
@@ -959,7 +960,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

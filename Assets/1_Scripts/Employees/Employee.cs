@@ -35,12 +35,13 @@ public class Employee : MonoBehaviour
         {
             animator.SetTrigger("OrderStarted");
             progressBarFill.fillAmount = Mathf.MoveTowards(progressBarFill.fillAmount, 1f, Time.deltaTime * 1f / prepTime); //fill the progress to the end gradually to full while the order finishes
-            
-            if(!employeeMerge.IsDragged)
+
+            if (!employeeMerge.IsDragged)
             {
                 ServedCustomer.position = Vector3.Lerp(ServedCustomer.position, CustomerWaitPosition.position, Settings.CustomerSettings.CustomerMovementSpeed * Time.deltaTime);
             }
         }
+        else animator.SetTrigger("OrderFinished");
     }
 
     public void PrepareOrder() //called by: OrderAccepted
