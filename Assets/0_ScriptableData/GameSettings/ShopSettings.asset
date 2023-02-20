@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: ShopSettings
   m_EditorClassIdentifier: 
   BaseCustomerPrice: 0
-  BaseEmployeeCost: 0
-  BaseNewRecipeCost: 500
-  BaseServiceSpeedCost: 10
-  BaseCustomerSpawnSpeedCost: 20
-  CustomerPriceMultiplier: 0
-  EmployeePriceMultiplier: 1
+  BaseEmployeeCost: 30
+  BaseNewRecipeCost: 0
+  BaseServiceSpeedCost: 40
+  BaseCustomerSpawnSpeedCost: 50
+  CustomerPriceMultiplier: 1
+  EmployeePriceMultiplier: 2
   RecipePriceMultiplier: 1.1
   ServiceSpeedPriceMultiplier: 1.1
   CustomerSpawnPriceMultiplier: 1.1

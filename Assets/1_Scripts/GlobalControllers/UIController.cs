@@ -78,8 +78,8 @@ public class UIController : MonoBehaviour
     {
         if (GameManager.MoneyTotal >= GameManager.CurrentEmployeePrice)
         {
-            RuntimeEvents.EmployeeHired.Raise();
             GameManager.MoneyTotal -= GameManager.CurrentEmployeePrice;
+            RuntimeEvents.EmployeeHired.Raise();
         }
         else Debug.Log("Not enough money!");
 
