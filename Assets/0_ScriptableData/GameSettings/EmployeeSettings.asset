@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b36835154a4e04dbb6c9679e9d2116, type: 3}
   m_Name: EmployeeSettings
   m_EditorClassIdentifier: 
-  BaseOrderPrepTime: 5
-  MinOrderPrepTime: 1
+  BaseOrderPrepTime: 7
+  MinOrderPrepTime: 2

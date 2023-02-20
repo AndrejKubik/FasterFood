@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: ShopSettings
   m_EditorClassIdentifier: 
   BaseCustomerPrice: 0
-  BaseEmployeeCost: 30
+  BaseEmployeeCost: 100
   BaseNewRecipeCost: 0
   BaseServiceSpeedCost: 40
   BaseCustomerSpawnSpeedCost: 50
   CustomerPriceMultiplier: 1
   EmployeePriceMultiplier: 2
   RecipePriceMultiplier: 1.1
-  ServiceSpeedPriceMultiplier: 1.1
-  CustomerSpawnPriceMultiplier: 1.1
+  ServiceSpeedPriceMultiplier: 1.3
+  CustomerSpawnPriceMultiplier: 1.3
   NewRecipeSegments: 3
   ServiceSpeedSegments: 3
   CustomerSpawnSegments: 3
@@ -30,6 +30,6 @@ MonoBehaviour:
   NewDishPrepTimeIncrease: 4
   DishCostIncrease: 60
   PrepTimeReduceAmmount: 1
-  SpawnCooldownReduceAmmount: 1
-  BaseMoneyUpdateSpeed: 300
+  SpawnCooldownReduceAmmount: 1.25
+  BaseMoneyUpdateSpeed: 600
   ButtonFillSpeed: 3

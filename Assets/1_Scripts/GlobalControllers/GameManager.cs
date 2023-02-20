@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab)) MoneyTotal += 50000;
+        if (Input.GetKeyDown(KeyCode.Tab)) MoneyTotal += 5000000;
     }
 
     public void EarnMoney() //called by: OrderFinished
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
 
     private void IncreasePrice(ref float price, float priceIncrease)
     {
-        float rawPrice = price * 0.5f + price * priceIncrease;
+        float rawPrice = price + price * priceIncrease * 0.5f;
         price = Mathf.RoundToInt(rawPrice);
     }
 }

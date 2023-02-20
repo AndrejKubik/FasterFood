@@ -44,6 +44,9 @@ public class UIController : MonoBehaviour
     {
         UpdateMoneyCount();
         UpdateButtonFills();
+
+        if (EmployeeManager.instance.ActiveEmployees.Count >= EmployeeManager.SpawnPoints.Count) employeeButtonBlock.SetActive(true);
+        else employeeButtonBlock.SetActive(false);
     }
 
     public void PauseGame() //called by menu button
