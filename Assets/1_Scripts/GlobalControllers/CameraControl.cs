@@ -21,21 +21,21 @@ public class CameraControl : MonoBehaviour
             cameras[0].Priority = 0;
             cameras[1].Priority = 0;
             cameras[2].Priority = 1;
-            cameras[3].Priority = 0;
+            //cameras[3].Priority = 0;
         }
         else if (EmployeeManager.SpawnPoints[6].IsOccupied || EmployeeManager.SpawnPoints[5].IsOccupied)
         {
             cameras[0].Priority = 0;
             cameras[1].Priority = 1;
             cameras[2].Priority = 0;
-            cameras[3].Priority = 0;
+            //cameras[3].Priority = 0;
         }
         else
         {
             cameras[0].Priority = 1;
             cameras[1].Priority = 0;
             cameras[2].Priority = 0;
-            cameras[3].Priority = 0;
+            //cameras[3].Priority = 0;
         }
 
 
