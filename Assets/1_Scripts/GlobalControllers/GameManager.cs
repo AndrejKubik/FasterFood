@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab)) MoneyTotal += 5000000;
+        if (Input.GetKeyDown(KeyCode.S)) CustomerSpawnCooldown = 0.15f;
     }
 
     public void EarnMoney() //called by: OrderFinished

@@ -16,14 +16,14 @@ public class CameraControl : MonoBehaviour
         //    cameras[2].Priority = 0;
         //    cameras[3].Priority = 1;
         //}
-        if (EmployeeManager.SpawnPoints[8].IsOccupied || EmployeeManager.SpawnPoints[7].IsOccupied)
+        if (EmployeeManager.SpawnPoints[4].IsOccupied || EmployeeManager.SpawnPoints[3].IsOccupied)
         {
             cameras[0].Priority = 0;
             cameras[1].Priority = 0;
             cameras[2].Priority = 1;
             //cameras[3].Priority = 0;
         }
-        else if (EmployeeManager.SpawnPoints[6].IsOccupied || EmployeeManager.SpawnPoints[5].IsOccupied)
+        else if (EmployeeManager.SpawnPoints[2].IsOccupied || EmployeeManager.SpawnPoints[1].IsOccupied)
         {
             cameras[0].Priority = 0;
             cameras[1].Priority = 1;
