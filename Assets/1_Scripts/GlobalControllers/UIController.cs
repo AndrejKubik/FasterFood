@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     [Header("DEBUG MENU OBJECTS: ")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject hint;
 
     [Header("UPGRADE PROGRESS BARS: ")]
     [SerializeField] private Image customersUpgradeFill;
@@ -61,6 +62,11 @@ public class UIController : MonoBehaviour
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
         pauseButton.SetActive(true);
+    }
+
+    public void TurnOffHint() //called by: OrderFinished
+    {
+        if(hint.activeSelf) hint.SetActive(false);
     }
 
     public void BaitCustomer() //called by a button
