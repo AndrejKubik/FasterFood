@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public static float CurrentCustomerSpawnPrice;
 
     [SerializeField] private Animator kitchenAnimator;
+    private int screenshotIndex;
 
     private void Start()
     {
@@ -48,6 +49,11 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab)) MoneyTotal += 5000000;
         if (Input.GetKeyDown(KeyCode.S)) CustomerSpawnCooldown = 0.15f;
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            ScreenCapture.CaptureScreenshot("Screenshot" + screenshotIndex + ".png");
+            screenshotIndex++;
+        }
     }
 
     public void EarnMoney() //called by: OrderFinished
